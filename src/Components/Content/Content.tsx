@@ -1,6 +1,6 @@
 import React from 'react';
 import Filter from "../Filter/Filter";
-import Ticket from "../Ticket/Ticket";
+import TicketContainer from "../Ticket/TicketContainer";
 import Chekeds from "../Checkeds/Chekeds";
 import styled from "styled-components";
 
@@ -10,7 +10,7 @@ const Content = () => {
             <Chekeds/>
             <MainCase>
                 <Filter/>
-                <Ticket/>
+                <TicketContainer/>
 
                 <FiveMoreCase>
                         Показать еще 5 билетов

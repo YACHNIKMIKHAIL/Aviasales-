@@ -1,15 +1,43 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import styled from "styled-components";
+import {useDispatch} from "react-redux";
+import {
+    setAllTicketsAC,
+    setNullTicketsAC,
+    setOneTicketsAC,
+    setThreeTicketsAC,
+    setTwoTicketsAC
+} from "../Store/TicketReducer";
 
 const Chekeds = () => {
-    return (
+    const dispatch = useDispatch()
 
+    const allCheck = () => {
+        dispatch(setAllTicketsAC())
+    }
+    const nullCheck = (e:ChangeEvent<HTMLInputElement>) => {
+        if(e.currentTarget.checked) {
+            dispatch(setNullTicketsAC())
+        }else{
+            dispatch(setAllTicketsAC())
+        }
+    }
+    const oneCheck = () => {
+        dispatch(setOneTicketsAC())
+    }
+    const twoCheck = () => {
+        dispatch(setTwoTicketsAC())
+    }
+    const threeCheck = () => {
+        dispatch(setThreeTicketsAC())
+    }
+    return (
         <ChekedsCase>КОЛИЧЕСВО ПЕРЕСАДОК
-            <Span> <input type="checkbox"/>Все</Span>
-            <Span> <input type="checkbox"/>Без пересадок</Span>
-            <Span> <input type="checkbox"/>1 пересадка</Span>
-            <Span> <input type="checkbox"/>2 пересадки</Span>
-            <Span> <input type="checkbox"/>3 пересадки</Span>
+            <Span> <input onChange={allCheck} type="checkbox"/>Все</Span>
+            <Span> <input onChange={(e)=>nullCheck(e)} type="checkbox"/>Без пересадок</Span>
+            <Span> <input onChange={oneCheck} type="checkbox"/>1 пересадка</Span>
+            <Span> <input onChange={twoCheck} type="checkbox"/>2 пересадки</Span>
+            <Span> <input onChange={threeCheck} type="checkbox"/>3 пересадки</Span>
         </ChekedsCase>
     );
 };
@@ -30,6 +58,7 @@ export const ChekedsCase = styled.div`
 const Span = styled.span`
   width: 100%;
   height: 10%;
+
   &:hover {
     background-color: rgba(33, 150, 243, 0.16);
   }

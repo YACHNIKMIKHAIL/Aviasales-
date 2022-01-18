@@ -2,11 +2,11 @@ import React, {useEffect} from 'react';
 import {HeadCase, OneCase, TicketCase, TwoCase} from "./TicketsStyle";
 import {useDispatch, useSelector} from "react-redux";
 import {ReducerType} from "../Store/Store";
-import {InitailTicketsType, setTicketsAC} from "../Store/TicketReducer";
+import {InitailTicketsType} from "../Store/TicketReducer";
 import {Dispatch} from "redux";
 import axios from "axios";
 
-const Ticket = () => {
+const TicketContainer = () => {
     let tickets = useSelector<ReducerType, Array<InitailTicketsType>>(state => state.tickets)
     const dispatch = useDispatch<Dispatch>()
 
@@ -58,4 +58,4 @@ const Ticket = () => {
     );
 };
 
-export default Ticket;
+export default TicketContainer;
