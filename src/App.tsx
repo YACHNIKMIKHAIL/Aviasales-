@@ -1,98 +1,166 @@
 import React from 'react';
 import './App.css';
-import {
-    AppCase,
-    ECase,
-    FilterCase,
-    HeaderCase,
-    LogoCase, MCase, MOCase, MOWCase, NCase,
-    OCase,
-    OneCase,
-    S7Case,
-    TabsCase,
-    TCase,
-    TCASE,
-    TiCase,
-    TickedCase,
-    TimeCase
-} from './Components/Styles';
 
 function App() {
     return (
-        <AppCase>
+        <div style={{
+            backgroundColor: 'black',
+            height: '100vh',
+            overflow: 'auto',
+            display: 'flex',
+            justifyContent: 'center'
+        }}>
             <div style={{
-                border: '2px black solid',
-                height: '15%',
-                width: '100%',
+                backgroundColor: '#F3F7FA',
+                width: '70%',
                 display: 'flex',
-                justifyContent: 'center',
+                flexDirection: 'column',
                 alignItems: 'center'
             }}>
-                <LogoCase>plain logo</LogoCase>
-            </div>
-            <div style={{width: '70%', height: '85%', border: '2px black solid', display: 'flex'}}>
-                <FilterCase>
-                    Количество пересадок
-                    <span><input type="checkbox"/>Все</span>
-                    <span><input type="checkbox"/>Без пересадок</span>
-                    <span><input type="checkbox"/>1 пересадка</span>
-                    <span><input type="checkbox"/>2 пересадки</span>
-                    <span><input type="checkbox"/>3 пересадки</span>
-                </FilterCase>
-                <div style={{border:'2px yellow solid'}}>
-                    <TabsCase>
-                        <div>Самый дешевый</div>
-                        <div>Самый быстрый</div>
-                        <div>Оптимальный</div>
-                    </TabsCase>
-                    <TickedCase>
-                        <div style={{height: '40%', display: 'flex', alignItems: 'center'}}>
-                            <HeaderCase>
-                                <TCASE>13 400 P</TCASE>
-                                <S7Case> S7 Airlines</S7Case>
-                            </HeaderCase>
-                        </div>
-                        <div style={{
-                            height: '50%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'space-around',
-                            overflow: 'auto'
-                        }}>
-                            <OneCase>
-                                <OCase>
-                                    <MOWCase>MOW-HKT</MOWCase>
-                                    <TimeCase>10:45-08:00</TimeCase>
-                                </OCase>
-                                <NCase>
-                                    <MOCase>В ПУТИ</MOCase>
-                                    <TiCase>21ч 15м</TiCase>
-                                </NCase>
-                                <ECase>
-                                    <MCase>2 ПЕРЕСАДКИ</MCase>
-                                    <TCase>HKG, JNB</TCase>
-                                </ECase>
-                            </OneCase>
 
-                            <OneCase>
-                                <OCase>
-                                    <MOWCase>MOW-HKT</MOWCase>
-                                    <TimeCase>11:20-00:50</TimeCase>
-                                </OCase>
-                                <NCase>
-                                    <MOCase>В ПУТИ</MOCase>
-                                    <TiCase>13ч 30м</TiCase>
-                                </NCase>
-                                <ECase>
-                                    <MCase>1 ПЕРЕСАДКИ</MCase>
-                                    <TCase>HKG</TCase>
-                                </ECase>
-                            </OneCase>
+                <div style={{
+                    border: '1px black solid',
+                    height: '20%',
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                    <div> plain logo</div>
+                </div>
+
+                <div style={{
+                    border: '4px red solid',
+                    width: '80%',
+                    display: 'flex',
+                    height: '100%',
+                    justifyContent: 'space-between',
+                    flexWrap:'wrap'
+                }}>
+
+                    <div style={{
+                        border: '2px blue solid', minWidth: '30%', height: '45%', display: 'flex', flexDirection: 'column',
+                        justifyContent: 'space-around', alignItems: "flex-start", padding: '0 10px'
+                    }}>КОЛИЧЕСВО ПЕРЕСАДОК
+                        <span> <input type="checkbox"/>Все</span>
+                        <span> <input type="checkbox"/>Без пересадок</span>
+                        <span> <input type="checkbox"/>1 пересадка</span>
+                        <span> <input type="checkbox"/>2 пересадки</span>
+                        <span> <input type="checkbox"/>3 пересадки</span>
+                    </div>
+
+                    <div style={{border: '2px purple solid', width: '65%', display:'flex',flexDirection:'column',alignItems:"center"}}>
+
+                        <div style={{
+                            border: '2px red solid',
+                            height: '10%',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-evenly'
+                        }}>
+                            <div>Самый дешевый</div>
+                            <div>Самый быстрый</div>
+                            <div>Оптимальный</div>
                         </div>
-                    </TickedCase>
+
+                        <div style={{border: '2px green solid', height: '34%', width: '93%'}}>
+                            <div style={{
+                                border: '1px black solid',
+                                height: '30%',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                padding: '0 10px'
+                            }}>
+                                <div>13 400 Р</div>
+                                <div>S7</div>
+                            </div>
+
+                            <div style={{
+                                height: '35%',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                margin: '0 10px'
+                            }}>
+                                <div style={{
+                                    border: '2px red solid',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'space-around'
+                                }}>
+                                    <span>MOW-HKT</span>
+                                    <span>10:45-08:00</span>
+                                </div>
+                                <div style={{
+                                    border: '2px red solid',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'space-around'
+                                }}>
+                                    <span>В ПУТИ</span>
+                                    <span>21ч 15м</span>
+                                </div>
+                                <div style={{
+                                    border: '2px red solid',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'space-around'
+                                }}>
+                                    <span>2 ПЕРЕСАДКИ</span>
+                                    <span>HKG, JNB</span>
+                                </div>
+                            </div>
+
+                            <div style={{
+                                height: '35%',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                margin: '0 10px'
+                            }}>
+                                <div style={{
+                                    border: '2px red solid',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'space-around'
+                                }}>
+                                    <span>MOW-HKT</span>
+                                    <span>11:20-00:50</span>
+                                </div>
+                                <div style={{
+                                    border: '2px red solid',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'space-around'
+                                }}>
+                                    <span>В ПУТИ</span>
+                                    <span>13 30</span>
+                                </div>
+                                <div style={{
+                                    border: '2px red solid',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'space-around'
+                                }}>
+                                    <span>1 ПЕРЕСАДКА</span>
+                                    <span>HKG</span>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div style={{border: '2px blue solid',position:'absolute',bottom:'0'}}>
+                            <div>
+                                Показать еще 5 билетов
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </AppCase>
+
+        </div>
     );
 }
 
