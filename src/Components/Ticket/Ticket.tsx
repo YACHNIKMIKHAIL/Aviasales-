@@ -16,7 +16,7 @@ const Ticket = () => {
             .then(response=> {
                 // dispatch(setTicketsAC(response))
                 console.log(response.data.tickets)
-                dispatch(setTicketsAC(response.data.tickets))
+                // dispatch(setTicketsAC(response.data.tickets))
             })
 
     }, [])
@@ -24,36 +24,38 @@ const Ticket = () => {
 
     return (
         <TicketCase>
+            {ticket.map(ticket=>{
+                return <><HeadCase>
+                    <div>{ticket.price} P</div>
+                    <div style={{display: 'flex'}}>
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXE4kpfeoNxf-EHbfduUO8buljuzobWywkQ&usqp=CAU"
+                            alt="aircompany logo"
+                            style={{height: '40px'}}/>
+                        <div>{ticket.carrier}</div>
+                    </div>
+                </HeadCase>
 
-            <button onClick={() => ticketsApi.getTickets()}>tickets</button>
-            <HeadCase>
-                <div>{ticket.price} P</div>
-                <div style={{display: 'flex'}}>
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXE4kpfeoNxf-EHbfduUO8buljuzobWywkQ&usqp=CAU"
-                        alt="aircompany logo"
-                        style={{height: '40px'}}/>
-                    <div>{ticket.carrier}</div>
-                </div>
-            </HeadCase>
+                    {ticket.segments.map(m => {
+                        return <><OneCase>
+                            <TwoCase>
+                                <div>{m.origin}-{m.destination}</div>
+                                <div style={{color: '#2196F3'}}>{m.date}</div>
+                            </TwoCase>
+                            <TwoCase>
+                                <div>В ПУТИ</div>
+                                <div style={{color: '#2196F3'}}>{m.duration}</div>
+                            </TwoCase>
+                            <TwoCase>
+                                <div>ПЕРЕСАДКИ</div>
+                                <div style={{color: '#2196F3'}}>{m.stops.map(s => {
+                                    return <>'{s}'</>
+                                })}</div>
+                            </TwoCase>
+                        </OneCase></>
+            })}
+            {/*<button onClick={() => ticketsApi.getTickets()}>tickets</button>*/}
 
-            {ticket.segments.map(m => {
-                return <><OneCase>
-                    <TwoCase>
-                        <div>{m.origin}-{m.destination}</div>
-                        <div style={{color: '#2196F3'}}>{m.date}</div>
-                    </TwoCase>
-                    <TwoCase>
-                        <div>В ПУТИ</div>
-                        <div style={{color: '#2196F3'}}>{m.duration}</div>
-                    </TwoCase>
-                    <TwoCase>
-                        <div>ПЕРЕСАДКИ</div>
-                        <div style={{color: '#2196F3'}}>{m.stops.map(s => {
-                            return <>'{s}'</>
-                        })}</div>
-                    </TwoCase>
-                </OneCase>
                     {/*<OneCase>*/}
                     {/*    <TwoCase>*/}
                     {/*        <div>MOW-HKT</div>*/}

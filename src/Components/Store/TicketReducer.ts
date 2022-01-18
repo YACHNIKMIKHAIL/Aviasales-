@@ -34,21 +34,21 @@ export type InitailTicketsType = {
         }
     ]
 }
-const initailState: Array<InitailTicketsType> = {
-    // price:49480,
-    // carrier:"TG",
-    // segments:
-    //     [{origin:"MOW",
-    //         destination:"HKT",
-    //         date:"2022-01-22T10:47:00.000Z",
-    //         stops:["AUH"],
-    //         duration:1312},
-    //         {origin:"HKT",
-    //             destination:"MOW",
-    //             date:"2022-02-10T22:11:00.000Z",
-    //             stops:["KUL","SHA"],
-    //             duration:1002}]
-} as Array<InitailTicketsType>
+const initailState: Array<InitailTicketsType> = [{
+    price:49480,
+    carrier:"TG",
+    segments:
+        [{origin:"MOW",
+            destination:"HKT",
+            date:"2022-01-22T10:47:00.000Z",
+            stops:["AUH"],
+            duration:1312},
+            {origin:"HKT",
+                destination:"MOW",
+                date:"2022-02-10T22:11:00.000Z",
+                stops:["KUL","SHA"],
+                duration:1002}]
+}] as Array<InitailTicketsType>
 
 export const ticketReducer = (state = initailState, action: ActionsType): Array<InitailTicketsType> => {
     switch (action.type) {
