@@ -12,11 +12,9 @@ const Content = () => {
                 <Filter/>
                 <Ticket/>
 
-                {/*<div style={{border: '2px blue solid',position:'absolute',bottom:'0'}}>*/}
-                {/*    <div>*/}
-                {/*        Показать еще 5 билетов*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                <FiveMoreCase>
+                        Показать еще 5 билетов
+                </FiveMoreCase>
             </MainCase>
         </ContentCase>
     );
@@ -35,4 +33,16 @@ export const MainCase = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center
+`
+export const FiveMoreCase = styled.div`
+  position:absolute;
+  bottom:0;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  background-color:#2196F3;
+  border-radius: 5px;
+  padding: 5px;
 `

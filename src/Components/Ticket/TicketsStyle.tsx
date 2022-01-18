@@ -24,7 +24,7 @@ export const OneCase = styled.div`
 `
 export const TwoCase = styled.div`
   color: #071f33;
-  width: 25%;
+  min-width: 15%;
   display: flex;
   flex-direction: column;
   justify-content: space-around

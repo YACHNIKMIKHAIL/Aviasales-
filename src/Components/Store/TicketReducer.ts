@@ -1,4 +1,4 @@
-type InitailTicketsType = {
+export type InitailTicketsType = {
     // Цена в рублях
     price: number
     // Код авиакомпании (iata)
