@@ -1,54 +1,73 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {HeadCase, OneCase, TicketCase, TwoCase} from "./TicketsStyle";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {ReducerType} from "../Store/Store";
-import {InitailTicketsType} from "../Store/TicketReducer";
+import {InitailTicketsType, setTicketsAC} from "../Store/TicketReducer";
+import {ticketsApi} from "../Api/Api";
+import {Dispatch} from "redux";
+import axios from "axios";
 
 const Ticket = () => {
-    const ticket=useSelector<ReducerType,InitailTicketsType>(state=>state.tickets)
+    let ticket = useSelector<ReducerType, Array<InitailTicketsType>>(state => state.tickets)
+    const dispatch = useDispatch<Dispatch>()
+
+    useEffect(() => {
+        axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=3v0v0')
+            .then(response=> {
+                // dispatch(setTicketsAC(response))
+                console.log(response.data.tickets)
+                dispatch(setTicketsAC(response.data.tickets))
+            })
+
+    }, [])
+
+
     return (
         <TicketCase>
+
+            <button onClick={() => ticketsApi.getTickets()}>tickets</button>
             <HeadCase>
                 <div>{ticket.price} P</div>
-                <div style={{display:'flex'}}>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXE4kpfeoNxf-EHbfduUO8buljuzobWywkQ&usqp=CAU"
-                          alt="aircompany logo"
-                style={{height:'40px'}}/>
-                <div>{ticket.carrier}</div>
+                <div style={{display: 'flex'}}>
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXE4kpfeoNxf-EHbfduUO8buljuzobWywkQ&usqp=CAU"
+                        alt="aircompany logo"
+                        style={{height: '40px'}}/>
+                    <div>{ticket.carrier}</div>
                 </div>
             </HeadCase>
 
-            {ticket.segments.map(m=>{
+            {ticket.segments.map(m => {
                 return <><OneCase>
                     <TwoCase>
                         <div>{m.origin}-{m.destination}</div>
-                        <div style={{color:'#2196F3'}}>{m.date}</div>
+                        <div style={{color: '#2196F3'}}>{m.date}</div>
                     </TwoCase>
                     <TwoCase>
                         <div>В ПУТИ</div>
-                        <div style={{color:'#2196F3'}}>{m.duration}</div>
+                        <div style={{color: '#2196F3'}}>{m.duration}</div>
                     </TwoCase>
                     <TwoCase>
                         <div>ПЕРЕСАДКИ</div>
-                        <div style={{color:'#2196F3'}}>{m.stops.map(s=>{
+                        <div style={{color: '#2196F3'}}>{m.stops.map(s => {
                             return <>'{s}'</>
                         })}</div>
                     </TwoCase>
                 </OneCase>
-                {/*<OneCase>*/}
-                {/*    <TwoCase>*/}
-                {/*        <div>MOW-HKT</div>*/}
-                {/*        <div style={{color:'#2196F3'}}>11:20-00:50</div>*/}
-                {/*    </TwoCase>*/}
-                {/*    <TwoCase>*/}
-                {/*        <div>В ПУТИ</div>*/}
-                {/*        <div style={{color:'#2196F3'}}>13 30</div>*/}
-                {/*    </TwoCase>*/}
-                {/*    <TwoCase>*/}
-                {/*        <div>1 ПЕРЕСАДКА</div>*/}
-                {/*        <div style={{color:'#2196F3'}}>HKG</div>*/}
-                {/*    </TwoCase>*/}
-                {/*</OneCase>*/}
+                    {/*<OneCase>*/}
+                    {/*    <TwoCase>*/}
+                    {/*        <div>MOW-HKT</div>*/}
+                    {/*        <div style={{color:'#2196F3'}}>11:20-00:50</div>*/}
+                    {/*    </TwoCase>*/}
+                    {/*    <TwoCase>*/}
+                    {/*        <div>В ПУТИ</div>*/}
+                    {/*        <div style={{color:'#2196F3'}}>13 30</div>*/}
+                    {/*    </TwoCase>*/}
+                    {/*    <TwoCase>*/}
+                    {/*        <div>1 ПЕРЕСАДКА</div>*/}
+                    {/*        <div style={{color:'#2196F3'}}>HKG</div>*/}
+                    {/*    </TwoCase>*/}
+                    {/*</OneCase>*/}
                 </>
             })}
 

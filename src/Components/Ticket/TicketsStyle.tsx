@@ -2,9 +2,10 @@ import styled from "styled-components";
 
 export const TicketCase = styled.div`
   border: 2px #2196F3 solid;
-  min-height: 33%; 
+  min-height: 33%;
   min-width: 100%;
   border-radius: 10px;
+  height: fit-content;
 `
 export const HeadCase = styled.div`
   min-height: 30%;
@@ -12,7 +13,7 @@ export const HeadCase = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 30px;
-  color:#2196F3;
+  color: #2196F3;
   font-size: 30px;
   font-weight: bold;
 `

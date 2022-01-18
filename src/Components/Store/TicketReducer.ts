@@ -1,3 +1,5 @@
+import {ticketsApi} from "../Api/Api";
+
 export type InitailTicketsType = {
     // Цена в рублях
     price: number
@@ -32,28 +34,33 @@ export type InitailTicketsType = {
         }
     ]
 }
-const initailState: InitailTicketsType = {
-    price:49480,
-    carrier:"TG",
-    segments:
-        [{origin:"MOW",
-            destination:"HKT",
-            date:"2022-01-22T10:47:00.000Z",
-            stops:["AUH"],
-            duration:1312},
-            {origin:"HKT",
-                destination:"MOW",
-                date:"2022-02-10T22:11:00.000Z",
-                stops:["KUL","SHA"],
-                duration:1002}]
-} as InitailTicketsType
+const initailState: Array<InitailTicketsType> = {
+    // price:49480,
+    // carrier:"TG",
+    // segments:
+    //     [{origin:"MOW",
+    //         destination:"HKT",
+    //         date:"2022-01-22T10:47:00.000Z",
+    //         stops:["AUH"],
+    //         duration:1312},
+    //         {origin:"HKT",
+    //             destination:"MOW",
+    //             date:"2022-02-10T22:11:00.000Z",
+    //             stops:["KUL","SHA"],
+    //             duration:1002}]
+} as Array<InitailTicketsType>
 
-export const ticketReducer = (state = initailState, action: any): InitailTicketsType => {
+export const ticketReducer = (state = initailState, action: ActionsType): Array<InitailTicketsType> => {
     switch (action.type) {
-        case 'xxx': {
-            return state
+        case 'SET_TICKETS': {
+            return {...action.tickets}
         }
         default:
             return state
     }
 }
+type ActionsType=setTicketsACType
+export type setTicketsACType = ReturnType<typeof setTicketsAC>
+export const setTicketsAC = (tickets:Array<InitailTicketsType>) => ({
+    type: 'SET_TICKETS',tickets
+} as const)
