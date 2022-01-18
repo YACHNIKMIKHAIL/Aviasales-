@@ -19,7 +19,6 @@ function App() {
             }}>
 
                 <div style={{
-                    border: '1px black solid',
                     height: '20%',
                     width: '100%',
                     display: 'flex',
@@ -30,7 +29,6 @@ function App() {
                 </div>
 
                 <div style={{
-                    border: '4px red solid',
                     width: '80%',
                     display: 'flex',
                     height: '100%',
@@ -49,24 +47,25 @@ function App() {
                         <span> <input type="checkbox"/>3 пересадки</span>
                     </div>
 
-                    <div style={{border: '2px purple solid', width: '65%', display:'flex',flexDirection:'column',alignItems:"center"}}>
+                    <div style={{border: '2px purple solid', minWidth: '65%', display:'flex',flexDirection:'column',alignItems:"center"}}>
 
                         <div style={{
                             border: '2px red solid',
-                            height: '10%',
+                            minHeight: '10%',
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'space-evenly'
+                            justifyContent: 'space-evenly',
+                            flexWrap:'wrap'
                         }}>
                             <div>Самый дешевый</div>
                             <div>Самый быстрый</div>
                             <div>Оптимальный</div>
                         </div>
 
-                        <div style={{border: '2px green solid', height: '34%', width: '93%'}}>
+                        <div style={{border: '2px green solid', height: '34%', minWidth: '93%'}}>
                             <div style={{
                                 border: '1px black solid',
-                                height: '30%',
+                                minHeight: '30%',
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 alignItems: 'center',
@@ -77,7 +76,7 @@ function App() {
                             </div>
 
                             <div style={{
-                                height: '35%',
+                                minHeight: '35%',
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 margin: '0 10px'
@@ -88,8 +87,8 @@ function App() {
                                     flexDirection: 'column',
                                     justifyContent: 'space-around'
                                 }}>
-                                    <span>MOW-HKT</span>
-                                    <span>10:45-08:00</span>
+                                    <div>MOW-HKT</div>
+                                    <div>10:45-08:00</div>
                                 </div>
                                 <div style={{
                                     border: '2px red solid',
@@ -97,8 +96,8 @@ function App() {
                                     flexDirection: 'column',
                                     justifyContent: 'space-around'
                                 }}>
-                                    <span>В ПУТИ</span>
-                                    <span>21ч 15м</span>
+                                    <div>В ПУТИ</div>
+                                    <div>21ч 15м</div>
                                 </div>
                                 <div style={{
                                     border: '2px red solid',
@@ -106,13 +105,13 @@ function App() {
                                     flexDirection: 'column',
                                     justifyContent: 'space-around'
                                 }}>
-                                    <span>2 ПЕРЕСАДКИ</span>
-                                    <span>HKG, JNB</span>
+                                    <div>2 ПЕРЕСАДКИ</div>
+                                    <div>HKG, JNB</div>
                                 </div>
                             </div>
 
                             <div style={{
-                                height: '35%',
+                                minHeight: '35%',
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 margin: '0 10px'
@@ -123,8 +122,8 @@ function App() {
                                     flexDirection: 'column',
                                     justifyContent: 'space-around'
                                 }}>
-                                    <span>MOW-HKT</span>
-                                    <span>11:20-00:50</span>
+                                    <div>MOW-HKT</div>
+                                    <div>11:20-00:50</div>
                                 </div>
                                 <div style={{
                                     border: '2px red solid',
@@ -132,8 +131,8 @@ function App() {
                                     flexDirection: 'column',
                                     justifyContent: 'space-around'
                                 }}>
-                                    <span>В ПУТИ</span>
-                                    <span>13 30</span>
+                                    <div>В ПУТИ</div>
+                                    <div>13 30</div>
                                 </div>
                                 <div style={{
                                     border: '2px red solid',
@@ -141,8 +140,8 @@ function App() {
                                     flexDirection: 'column',
                                     justifyContent: 'space-around'
                                 }}>
-                                    <span>1 ПЕРЕСАДКА</span>
-                                    <span>HKG</span>
+                                    <div>1 ПЕРЕСАДКА</div>
+                                    <div>HKG</div>
                                 </div>
                             </div>
 
