@@ -1,17 +1,65 @@
-import React from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import Filter from "../Filter/Filter";
-import TicketContainer from "../Ticket/TicketContainer";
+import {TicketContainer} from "../Ticket/TicketContainer";
 import Chekeds from "../Checkeds/Chekeds";
 import styled from "styled-components";
+import {
+    setAllTicketsAC,
+    setNullTicketsAC,
+    setOneTicketsAC,
+    setThreeTicketsAC,
+    setTwoTicketsAC
+} from "../Store/TicketReducer";
 
 const Content = () => {
+    const [filter,setFilter]=useState<number>(5)
+
+    const allCheck = (e: boolean) => {
+        if (e) {
+            setFilter(5)
+        } else {
+            console.log('what else?')
+        }
+    }
+    const nullCheck = (e: boolean) => {
+        if (e) {
+            setFilter(0)
+        } else {
+            console.log('what else?')
+            setFilter(5)
+        }
+    }
+    const oneCheck = (e: boolean) => {
+        if (e) {
+            setFilter(1)
+        } else {
+            console.log('what else?')
+            setFilter(5)
+        }
+    }
+    const twoCheck = (e: boolean) => {
+        if (e) {
+            setFilter(2)
+        } else {
+            console.log('what else?')
+            setFilter(5)
+        }
+    }
+    const threeCheck = (e: boolean) => {
+        if (e) {
+            setFilter(3)
+        } else {
+            console.log('what else?')
+            setFilter(5)
+        }
+    }
+
     return (
         <ContentCase>
-            <Chekeds/>
+            <Chekeds allCheck={allCheck} nullCheck={nullCheck} oneCheck={oneCheck} twoCheck={twoCheck} threeCheck={threeCheck}/>
             <MainCase>
                 <Filter/>
-                <TicketContainer/>
-
+                <TicketContainer filter={filter}/>
                 <FiveMoreCase>
                         Показать еще 5 билетов
                 </FiveMoreCase>

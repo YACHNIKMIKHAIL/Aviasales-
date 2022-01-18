@@ -52,21 +52,21 @@ export const ticketReducer = (state = initailState, action: ActionsType): Array<
         case 'SET_OPTIMAL': {
             return state.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration || a.segments[1].duration > b.segments[1].duration ? 1 : -1)
         }
-        case 'SET_ALL': {
-            return state.map(m=>({...m}))
-        }
-        case 'SET_NULL': {
-            return state.filter(f => f.segments[0].stops.length === 0 && f.segments[1].stops.length === 0)
-        }
-        case 'SET_ONE': {
-            return state.filter(f => f.segments[0].stops.length <2 && f.segments[1].stops.length <2)
-        }
-        case 'SET_TWO': {
-            return state.filter(f => f.segments[0].stops.length <3 && f.segments[1].stops.length <3)
-        }
-        case 'SET_THREE': {
-            return state.filter(f => f.segments[0].stops.length <4 && f.segments[1].stops.length <4)
-        }
+        // case 'SET_ALL': {
+        //     return {...state}
+        // }
+        // case 'SET_NULL': {
+        //     return state.filter(f => f.segments[0].stops.length === 0 && f.segments[1].stops.length === 0)
+        // }
+        // case 'SET_ONE': {
+        //     return state.filter(f => f.segments[0].stops.length <2 && f.segments[1].stops.length <2)
+        // }
+        // case 'SET_TWO': {
+        //     return state.filter(f => f.segments[0].stops.length <3 && f.segments[1].stops.length <3)
+        // }
+        // case 'SET_THREE': {
+        //     return state.filter(f => f.segments[0].stops.length <4 && f.segments[1].stops.length <4)
+        // }
         default:
             return state
     }
@@ -76,11 +76,11 @@ type ActionsType =
     | setPoorTicketsACType
     | setFastsTicketsACType
     | setOptimalTicketsACType
-    | setAllTicketsACType
-    | setNullTicketsACType
-    | setOneTicketsACType
-    | setTwoTicketsACType
-    | setThreeTicketsACType
+    // | setAllTicketsACType
+    // | setNullTicketsACType
+    // | setOneTicketsACType
+    // | setTwoTicketsACType
+    // | setThreeTicketsACType
 
 export type setTicketsACType = ReturnType<typeof setTicketsAC>
 export const setTicketsAC = (tickets: Array<InitailTicketsType>) => ({
@@ -102,27 +102,27 @@ export const setOptimalTicketsAC = () => ({
     type: 'SET_OPTIMAL',
 } as const)
 
-export type setAllTicketsACType = ReturnType<typeof setAllTicketsAC>
-export const setAllTicketsAC = () => ({
-    type: 'SET_ALL',
-} as const)
-
-export type setNullTicketsACType = ReturnType<typeof setNullTicketsAC>
-export const setNullTicketsAC = () => ({
-    type: 'SET_NULL',
-} as const)
-
-export type setOneTicketsACType = ReturnType<typeof setOneTicketsAC>
-export const setOneTicketsAC = () => ({
-    type: 'SET_ONE',
-} as const)
-
-export type setTwoTicketsACType = ReturnType<typeof setTwoTicketsAC>
-export const setTwoTicketsAC = () => ({
-    type: 'SET_TWO',
-} as const)
-
-export type setThreeTicketsACType = ReturnType<typeof setThreeTicketsAC>
-export const setThreeTicketsAC = () => ({
-    type: 'SET_THREE',
-} as const)
+// export type setAllTicketsACType = ReturnType<typeof setAllTicketsAC>
+// export const setAllTicketsAC = () => ({
+//     type: 'SET_ALL',
+// } as const)
+//
+// export type setNullTicketsACType = ReturnType<typeof setNullTicketsAC>
+// export const setNullTicketsAC = () => ({
+//     type: 'SET_NULL',
+// } as const)
+//
+// export type setOneTicketsACType = ReturnType<typeof setOneTicketsAC>
+// export const setOneTicketsAC = () => ({
+//     type: 'SET_ONE',
+// } as const)
+//
+// export type setTwoTicketsACType = ReturnType<typeof setTwoTicketsAC>
+// export const setTwoTicketsAC = () => ({
+//     type: 'SET_TWO',
+// } as const)
+//
+// export type setThreeTicketsACType = ReturnType<typeof setThreeTicketsAC>
+// export const setThreeTicketsAC = () => ({
+//     type: 'SET_THREE',
+// } as const)

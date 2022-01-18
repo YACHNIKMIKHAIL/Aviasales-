@@ -8,36 +8,62 @@ import {
     setThreeTicketsAC,
     setTwoTicketsAC
 } from "../Store/TicketReducer";
-
-const Chekeds = () => {
+type ChekedsType={
+    allCheck:(e:boolean)=>void
+    nullCheck:(e:boolean)=>void
+    oneCheck:(e:boolean)=>void
+    twoCheck:(e:boolean)=>void
+    threeCheck:(e:boolean)=>void
+}
+const Chekeds = (props:ChekedsType) => {
     const dispatch = useDispatch()
 
-    const allCheck = () => {
-        dispatch(setAllTicketsAC())
-    }
-    const nullCheck = (e:ChangeEvent<HTMLInputElement>) => {
-        if(e.currentTarget.checked) {
-            dispatch(setNullTicketsAC())
-        }else{
-            dispatch(setAllTicketsAC())
-        }
-    }
-    const oneCheck = () => {
-        dispatch(setOneTicketsAC())
-    }
-    const twoCheck = () => {
-        dispatch(setTwoTicketsAC())
-    }
-    const threeCheck = () => {
-        dispatch(setThreeTicketsAC())
-    }
+    // const allCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    //     if (e.currentTarget.checked) {
+    //         dispatch(setAllTicketsAC())
+    //     } else {
+    //         console.log('what else?')
+    //     }
+    // }
+    // const nullCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    //     if (e.currentTarget.checked) {
+    //         dispatch(setNullTicketsAC())
+    //     } else {
+    //         console.log('what else?')
+    //         dispatch(setAllTicketsAC())
+    //     }
+    // }
+    // const oneCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    //     if (e.currentTarget.checked) {
+    //         dispatch(setOneTicketsAC())
+    //     } else {
+    //         console.log('what else?')
+    //         dispatch(setAllTicketsAC())
+    //     }
+    // }
+    // const twoCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    //     if (e.currentTarget.checked) {
+    //         dispatch(setTwoTicketsAC())
+    //     } else {
+    //         console.log('what else?')
+    //         dispatch(setAllTicketsAC())
+    //     }
+    // }
+    // const threeCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    //     if (e.currentTarget.checked) {
+    //         dispatch(setThreeTicketsAC())
+    //     } else {
+    //         console.log('what else?')
+    //         dispatch(setAllTicketsAC())
+    //     }
+    // }
     return (
         <ChekedsCase>КОЛИЧЕСВО ПЕРЕСАДОК
-            <Span> <input onChange={allCheck} type="checkbox"/>Все</Span>
-            <Span> <input onChange={(e)=>nullCheck(e)} type="checkbox"/>Без пересадок</Span>
-            <Span> <input onChange={oneCheck} type="checkbox"/>1 пересадка</Span>
-            <Span> <input onChange={twoCheck} type="checkbox"/>2 пересадки</Span>
-            <Span> <input onChange={threeCheck} type="checkbox"/>3 пересадки</Span>
+            <Span> <input onChange={(e) => props.allCheck(e.currentTarget.checked)} type="checkbox"/>Все</Span>
+            <Span> <input onChange={(e) => props.nullCheck(e.currentTarget.checked)} type="checkbox"/>Без пересадок</Span>
+            <Span> <input onChange={(e) => props.oneCheck(e.currentTarget.checked)} type="checkbox"/>1 пересадка</Span>
+            <Span> <input onChange={(e) => props.twoCheck(e.currentTarget.checked)} type="checkbox"/>2 пересадки</Span>
+            <Span> <input onChange={(e) => props.threeCheck(e.currentTarget.checked)} type="checkbox"/>3 пересадки</Span>
         </ChekedsCase>
     );
 };

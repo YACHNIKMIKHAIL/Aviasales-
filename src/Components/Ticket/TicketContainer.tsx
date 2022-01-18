@@ -1,12 +1,22 @@
-import React, {useEffect} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {HeadCase, OneCase, TicketCase, TwoCase} from "./TicketsStyle";
 import {useDispatch, useSelector} from "react-redux";
 import {ReducerType} from "../Store/Store";
-import {InitailTicketsType} from "../Store/TicketReducer";
+import {
+    InitailTicketsType,
+    setAllTicketsAC,
+    setNullTicketsAC,
+    setOneTicketsAC, setThreeTicketsAC,
+    setTwoTicketsAC
+} from "../Store/TicketReducer";
 import {Dispatch} from "redux";
 import axios from "axios";
+import Ticked from "./Ticked";
 
-const TicketContainer = () => {
+type TicketContainerType={
+    filter:number
+}
+export  const TicketContainer = (props:TicketContainerType) => {
     let tickets = useSelector<ReducerType, Array<InitailTicketsType>>(state => state.tickets)
     const dispatch = useDispatch<Dispatch>()
 
@@ -16,46 +26,26 @@ const TicketContainer = () => {
                 console.log(response.data.tickets)
                 // dispatch(setTicketsAC(response.data.tickets))
             })
-
     }, [])
+
+
+    let forRender=tickets
+    if(props.filter===0){
+        forRender=tickets.filter(f => f.segments[0].stops.length === 0 && f.segments[1].stops.length === 0)
+    }
+    if(props.filter===1){
+        forRender=tickets.filter(f => f.segments[0].stops.length <2 && f.segments[1].stops.length <2)
+    }
+    if(props.filter===2){
+        forRender=tickets.filter(f => f.segments[0].stops.length <3 && f.segments[1].stops.length <3)
+    }
+    if(props.filter===3){
+        forRender=tickets.filter(f => f.segments[0].stops.length <4 && f.segments[1].stops.length <4)
+    }
 
     return (
         <div>
-            {tickets.map((tmap, i) => {
-                return <TicketCase key={i}>
-                    <HeadCase>
-                    <div>{tmap.price} P</div>
-                    <div style={{display: 'flex'}}>
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXE4kpfeoNxf-EHbfduUO8buljuzobWywkQ&usqp=CAU"
-                            alt="aircompany logo"
-                            style={{height: '40px'}}/>
-                        <div>{tmap.carrier}</div>
-                    </div>
-                </HeadCase>
-
-                    {tmap.segments.map((m, i) => {
-                        return <OneCase key={i}>
-                            <TwoCase>
-                                <div>{m.origin}-{m.destination}</div>
-                                <div style={{color: '#2196F3'}}>{m.date}</div>
-                            </TwoCase>
-                            <TwoCase>
-                                <div>В ПУТИ</div>
-                                <div style={{color: '#2196F3'}}>{m.duration}</div>
-                            </TwoCase>
-                            <TwoCase>
-                                <div>ПЕРЕСАДКИ</div>
-                                <div style={{color: '#2196F3'}}>{m.stops.map(s => {
-                                    return <>'{s}'</>
-                                })}</div>
-                            </TwoCase>
-                        </OneCase>
-                    })}
-                </TicketCase>
-            })}
+            <Ticked tickets={forRender}/>
         </div>
     );
 };
-
-export default TicketContainer;
