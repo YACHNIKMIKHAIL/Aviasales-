@@ -5,11 +5,11 @@ const Chekeds = () => {
     return (
 
         <ChekedsCase>КОЛИЧЕСВО ПЕРЕСАДОК
-            <span> <input type="checkbox"/>Все</span>
-            <span> <input type="checkbox"/>Без пересадок</span>
-            <span> <input type="checkbox"/>1 пересадка</span>
-            <span> <input type="checkbox"/>2 пересадки</span>
-            <span> <input type="checkbox"/>3 пересадки</span>
+            <Span> <input type="checkbox"/>Все</Span>
+            <Span> <input type="checkbox"/>Без пересадок</Span>
+            <Span> <input type="checkbox"/>1 пересадка</Span>
+            <Span> <input type="checkbox"/>2 пересадки</Span>
+            <Span> <input type="checkbox"/>3 пересадки</Span>
         </ChekedsCase>
     );
 };
@@ -17,12 +17,20 @@ const Chekeds = () => {
 export default Chekeds;
 
 export const ChekedsCase = styled.div`
-  border: 2px blue solid;
+  background-color: #F3F7FA;
   min-width: 30%;
   height: 45%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: flex-start;
-  padding: 0 10px
+  padding: 0 10px;
+  border-radius: 10px;
+`
+const Span = styled.span`
+  width: 100%;
+  height: 10%;
+  &:hover {
+    background-color: rgba(33, 150, 243, 0.16);
+  }
 `

@@ -24,9 +24,10 @@ export const AppCase = styled.div`
   justify-content: center
 `
 export const MainCase = styled.div`
-  background-color: #F3F7FA;
-  width: 70%;
+  //background-color: #F3F7FA;
+  min-width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `

@@ -31,7 +31,6 @@ export const ContentCase = styled.div`
   flex-wrap: wrap
 `
 export const MainCase = styled.div`
-  border: 2px purple solid;
   min-width: 65%;
   display: flex;
   flex-direction: column;
