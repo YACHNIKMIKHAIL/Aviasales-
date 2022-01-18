@@ -3,11 +3,13 @@ import styled from "styled-components";
 export const AppCase = styled.div`
   border: 2px red solid;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-wrap: nowrap;
   
-  position: relative;
-  width: 960px;
-  height: 1350px;
+  //position: relative;
+  width: 100%;
+  height: 100vh;
 
   background: #F3F7FA;
 `
@@ -23,11 +25,11 @@ export const LogoCase = styled.div`
 export const TickedCase = styled.div`
   border: 2px blue solid;
   display: flex;
-  position: absolute;
+  //position: absolute;
   width: 502px;
-  height: 184px;
-  left: 355px;
-  top: 230px;
+  height: 30%;
+  //left: 355px;
+  //top: 230px;
 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   flex-direction: column;
@@ -35,18 +37,24 @@ export const TickedCase = styled.div`
 `
 export const FilterCase = styled.div`
   border: 2px red solid;
-  
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  //position: absolute;
   left: 10.73%;
   right: 65.1%;
   top: 11.85%;
   bottom: 69.48%;
+  height: 40%;
+  width: 30%;
 `
 export const TabsCase = styled.div`
   border: 2px red solid;
-  
-  position: absolute;
-  width: 502px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //position: absolute;
+  //width: 502px;
   height: 50px;
   left: 355px;
   top: 160px;

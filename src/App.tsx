@@ -20,8 +20,17 @@ import {
 function App() {
     return (
         <AppCase>
-            <LogoCase>plain logo</LogoCase>
-            {/*<div>*/}
+            <div style={{
+                border: '2px black solid',
+                height: '15%',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <LogoCase>plain logo</LogoCase>
+            </div>
+            <div style={{width: '70%', height: '85%', border: '2px black solid', display: 'flex'}}>
                 <FilterCase>
                     Количество пересадок
                     <span><input type="checkbox"/>Все</span>
@@ -30,33 +39,40 @@ function App() {
                     <span><input type="checkbox"/>2 пересадки</span>
                     <span><input type="checkbox"/>3 пересадки</span>
                 </FilterCase>
-                {/*<div>*/}
+                <div style={{border:'2px yellow solid'}}>
                     <TabsCase>
                         <div>Самый дешевый</div>
                         <div>Самый быстрый</div>
+                        <div>Оптимальный</div>
                     </TabsCase>
                     <TickedCase>
-                        <div style={{height:'40%',display:'flex',alignItems:'center'}}>
-                        <HeaderCase>
-                            <TCASE>13 400 P</TCASE>
-                            <S7Case> S7 Airlines</S7Case>
-                        </HeaderCase>
+                        <div style={{height: '40%', display: 'flex', alignItems: 'center'}}>
+                            <HeaderCase>
+                                <TCASE>13 400 P</TCASE>
+                                <S7Case> S7 Airlines</S7Case>
+                            </HeaderCase>
                         </div>
-                        <div style={{height:'50%',display:'flex',flexDirection:'column',justifyContent:'space-around'}}>
-                        <OneCase>
-                            <OCase>
-                                <MOWCase>MOW-HKT</MOWCase>
-                                <TimeCase>10:45-08:00</TimeCase>
-                            </OCase>
-                            <NCase>
-                                <MOCase>В ПУТИ</MOCase>
-                                <TiCase>21ч 15м</TiCase>
-                            </NCase>
-                            <ECase>
-                                <MCase>2 ПЕРЕСАДКИ</MCase>
-                                <TCase>HKG, JNB</TCase>
-                            </ECase>
-                        </OneCase>
+                        <div style={{
+                            height: '50%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-around',
+                            overflow: 'auto'
+                        }}>
+                            <OneCase>
+                                <OCase>
+                                    <MOWCase>MOW-HKT</MOWCase>
+                                    <TimeCase>10:45-08:00</TimeCase>
+                                </OCase>
+                                <NCase>
+                                    <MOCase>В ПУТИ</MOCase>
+                                    <TiCase>21ч 15м</TiCase>
+                                </NCase>
+                                <ECase>
+                                    <MCase>2 ПЕРЕСАДКИ</MCase>
+                                    <TCase>HKG, JNB</TCase>
+                                </ECase>
+                            </OneCase>
 
                             <OneCase>
                                 <OCase>
@@ -73,26 +89,9 @@ function App() {
                                 </ECase>
                             </OneCase>
                         </div>
-                        {/*<div>*/}
-                        {/*    <div>*/}
-
-                        {/*        <span>MOW-HKT</span>*/}
-                        {/*        <span>11:20-00:50</span>*/}
-                        {/*    </div>*/}
-                        {/*    <div>*/}
-
-                        {/*        <span>В ПУТИ</span>*/}
-                        {/*        <span>13ч 30м</span>*/}
-                        {/*    </div>*/}
-                        {/*    <div>*/}
-
-                        {/*        <span>1 ПЕРЕСАДКА</span>*/}
-                        {/*        <span>HKG</span>*/}
-                        {/*    </div>*/}
-                        {/*</div>*/}
                     </TickedCase>
-            {/*    </div>*/}
-            {/*</div>*/}
+                </div>
+            </div>
         </AppCase>
     );
 }
