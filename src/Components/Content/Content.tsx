@@ -24,7 +24,7 @@ export default Content;
 export const ContentCase = styled.div`
   width: 80%;
   display: flex;
-  height: 100%;
+  height: 90%;
   justify-content: space-between;
   flex-wrap: wrap
 `

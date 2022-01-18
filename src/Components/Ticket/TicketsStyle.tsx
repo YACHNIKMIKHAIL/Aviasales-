@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const TicketCase = styled.div`
   border: 2px #2196F3 solid;
-  min-height: 33%;
+  //min-height: 33%;
   min-width: 100%;
   border-radius: 10px;
   height: fit-content;
+  margin: 0 0 5px 0;
 `
 export const HeadCase = styled.div`
   min-height: 30%;

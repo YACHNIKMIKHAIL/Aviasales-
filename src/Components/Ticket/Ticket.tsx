@@ -3,41 +3,39 @@ import {HeadCase, OneCase, TicketCase, TwoCase} from "./TicketsStyle";
 import {useDispatch, useSelector} from "react-redux";
 import {ReducerType} from "../Store/Store";
 import {InitailTicketsType, setTicketsAC} from "../Store/TicketReducer";
-import {ticketsApi} from "../Api/Api";
 import {Dispatch} from "redux";
 import axios from "axios";
 
 const Ticket = () => {
-    let ticket = useSelector<ReducerType, Array<InitailTicketsType>>(state => state.tickets)
+    let tickets = useSelector<ReducerType, Array<InitailTicketsType>>(state => state.tickets)
     const dispatch = useDispatch<Dispatch>()
 
     useEffect(() => {
         axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=3v0v0')
-            .then(response=> {
-                // dispatch(setTicketsAC(response))
+            .then(response => {
                 console.log(response.data.tickets)
                 // dispatch(setTicketsAC(response.data.tickets))
             })
 
     }, [])
 
-
     return (
-        <TicketCase>
-            {ticket.map(ticket=>{
-                return <><HeadCase>
-                    <div>{ticket.price} P</div>
+        <div>
+            {tickets.map((tmap, i) => {
+                return <TicketCase key={i}>
+                    <HeadCase>
+                    <div>{tmap.price} P</div>
                     <div style={{display: 'flex'}}>
                         <img
                             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZXE4kpfeoNxf-EHbfduUO8buljuzobWywkQ&usqp=CAU"
                             alt="aircompany logo"
                             style={{height: '40px'}}/>
-                        <div>{ticket.carrier}</div>
+                        <div>{tmap.carrier}</div>
                     </div>
                 </HeadCase>
 
-                    {ticket.segments.map(m => {
-                        return <><OneCase>
+                    {tmap.segments.map((m, i) => {
+                        return <OneCase key={i}>
                             <TwoCase>
                                 <div>{m.origin}-{m.destination}</div>
                                 <div style={{color: '#2196F3'}}>{m.date}</div>
@@ -52,57 +50,11 @@ const Ticket = () => {
                                     return <>'{s}'</>
                                 })}</div>
                             </TwoCase>
-                        </OneCase></>
+                        </OneCase>
+                    })}
+                </TicketCase>
             })}
-            {/*<button onClick={() => ticketsApi.getTickets()}>tickets</button>*/}
-
-                    {/*<OneCase>*/}
-                    {/*    <TwoCase>*/}
-                    {/*        <div>MOW-HKT</div>*/}
-                    {/*        <div style={{color:'#2196F3'}}>11:20-00:50</div>*/}
-                    {/*    </TwoCase>*/}
-                    {/*    <TwoCase>*/}
-                    {/*        <div>В ПУТИ</div>*/}
-                    {/*        <div style={{color:'#2196F3'}}>13 30</div>*/}
-                    {/*    </TwoCase>*/}
-                    {/*    <TwoCase>*/}
-                    {/*        <div>1 ПЕРЕСАДКА</div>*/}
-                    {/*        <div style={{color:'#2196F3'}}>HKG</div>*/}
-                    {/*    </TwoCase>*/}
-                    {/*</OneCase>*/}
-                </>
-            })}
-
-            {/*<OneCase>*/}
-            {/*    <TwoCase>*/}
-            {/*        <div>MOW-HKT</div>*/}
-            {/*        <div style={{color:'#2196F3'}}>10:45-08:00</div>*/}
-            {/*    </TwoCase>*/}
-            {/*    <TwoCase>*/}
-            {/*        <div>В ПУТИ</div>*/}
-            {/*        <div style={{color:'#2196F3'}}>21ч 15м</div>*/}
-            {/*    </TwoCase>*/}
-            {/*    <TwoCase>*/}
-            {/*        <div>2 ПЕРЕСАДКИ</div>*/}
-            {/*        <div style={{color:'#2196F3'}}>HKG, JNB</div>*/}
-            {/*    </TwoCase>*/}
-            {/*</OneCase>*/}
-
-            {/*<OneCase>*/}
-            {/*    <TwoCase>*/}
-            {/*        <div>MOW-HKT</div>*/}
-            {/*        <div style={{color:'#2196F3'}}>11:20-00:50</div>*/}
-            {/*    </TwoCase>*/}
-            {/*    <TwoCase>*/}
-            {/*        <div>В ПУТИ</div>*/}
-            {/*        <div style={{color:'#2196F3'}}>13 30</div>*/}
-            {/*    </TwoCase>*/}
-            {/*    <TwoCase>*/}
-            {/*        <div>1 ПЕРЕСАДКА</div>*/}
-            {/*        <div style={{color:'#2196F3'}}>HKG</div>*/}
-            {/*    </TwoCase>*/}
-            {/*</OneCase>*/}
-        </TicketCase>
+        </div>
     );
 };
 

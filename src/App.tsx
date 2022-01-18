@@ -7,7 +7,6 @@ import styled from "styled-components";
 function App() {
     return (
         <AppCase>
-
             <MainCase>
                 <Header/>
                 <Content/>
