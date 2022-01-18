@@ -1,17 +1,20 @@
 import React from 'react';
+import styled from "styled-components";
 
 const Header = () => {
     return (
-        <div style={{
-            height: '20%',
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-        }}>
+        <HeaderCase>
             <div> plain logo</div>
-        </div>
+        </HeaderCase>
     );
 };
 
 export default Header;
+
+export const HeaderCase = styled.div`
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center
+`
