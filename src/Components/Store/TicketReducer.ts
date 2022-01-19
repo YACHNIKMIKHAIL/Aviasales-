@@ -36,6 +36,7 @@ export const ticketReducer = (
 
             return {...state, items: [...state.items, ...action.tickets.slice(0, state.fiveToRender)]}
 
+
             // const mappedTickeds = action.tickets.map(m => {
             //     let render = 1
             //     if (render >= state.fiveToRender) {
@@ -65,12 +66,13 @@ export const ticketReducer = (
             // slicer = slicer+action.s
             // return newState
         }
-        case
-        'SET_POOR': {
+        // case 'SHOW_FIVE': {
+        //      return {...state, items: [...state.items.slice(0, state.fiveToRender)]}
+        // }
+        case 'SET_POOR': {
             return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)}
         }
-        case
-        'SET_FASTS': {
+        case 'SET_FASTS': {
             return {
                 ...state,
                 items: state.items.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
@@ -99,6 +101,7 @@ type ActionsType =
     | setFastsTicketsACType
     | setOptimalTicketsACType
     | setMaxCountACType
+    // | showFiveACType
 
 export type setTicketsACType = ReturnType<typeof setTicketsAC>
 export const setTicketsAC = (tickets: Array<ItemsType>) => ({
@@ -125,3 +128,8 @@ export type setMaxCountACType = ReturnType<typeof setMaxCountAC>
 export const setMaxCountAC = (count: number) => ({
     type: 'SET_MAX', count
 } as const)
+
+// export type showFiveACType = ReturnType<typeof showFiveAC>
+// export const showFiveAC = () => ({
+//     type: 'SHOW_FIVE'
+// } as const)
