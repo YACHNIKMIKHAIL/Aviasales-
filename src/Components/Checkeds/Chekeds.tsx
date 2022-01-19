@@ -32,6 +32,7 @@ export const ChekedsCase = styled.div`
   align-items: flex-start;
   padding: 0 10px;
   border-radius: 10px;
+  margin: 0 0 10px 0;
 `
 const Span = styled.span`
   width: 100%;

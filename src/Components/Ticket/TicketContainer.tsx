@@ -13,13 +13,14 @@ export const TicketContainer = (props: TicketContainerType) => {
     const dispatch = useDispatch<Dispatch>()
 
     useEffect(() => {
-        axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=a14v')
+        axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=30yyr')
             .then(response => {
                 console.log(response.data.tickets)
                 dispatch(setTicketsAC(response.data.tickets))
             })
             .catch((error) => {
                 alert('error useEffect')
+                console.log(initailState.items)
                 dispatch(setTicketsAC(initailState.items))
             })
 

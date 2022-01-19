@@ -84,9 +84,6 @@ const Content = () => {
             <MainCase>
                 <Filter/>
                 <TicketContainer tickets={forRender}/>
-                <FiveMoreCase onClick={() => dispatch(setTicketsAC(tickets))}>
-                    Показать еще 5 билетов
-                </FiveMoreCase>
             </MainCase>
         </ContentCase>
     );
@@ -94,27 +91,15 @@ const Content = () => {
 
 export default Content;
 export const ContentCase = styled.div`
-  width: 80%;
+  width: 100%;
   display: flex;
   height: 90%;
-  justify-content: space-between;
-  flex-wrap: wrap
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border:2px blue solid;
 `
 export const MainCase = styled.div`
-  min-width: 65%;
   display: flex;
   flex-direction: column;
-  align-items: center
-`
-export const FiveMoreCase = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 20%;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  color: whitesmoke;
-  background-color: #2196F3;
-  border-radius: 5px;
-  padding: 5px;
 `

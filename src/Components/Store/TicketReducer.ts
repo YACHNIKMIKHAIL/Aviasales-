@@ -29,14 +29,19 @@ export const ticketReducer = (
 ): InitTicketsType => {
     switch (action.type) {
         case 'SET_TICKETS': {
-            let onlyFive = []
-            for (let i = 0; i < 5; i++) {
-                onlyFive.push(action.tickets[i])
-            }
-            return {
-                ...state,
-                items: [...state.items, ...onlyFive]
-            }
+            return {...state,items:[...action.tickets]}
+            // let onlyFive = []
+            // for (let i = 0; i < 5; i++) {
+            //     onlyFive.push(action.tickets[i])
+            // }
+            // return {
+            //     ...state,
+            //     items: [...state.items, ...onlyFive]
+            // }
+            // let slicer = 5
+            // let newState = {...state, items: state.items.slice(0, slicer)}
+            // slicer += 5
+            // return newState
         }
         case 'SET_POOR': {
             return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)}
@@ -50,7 +55,7 @@ export const ticketReducer = (
         case 'SET_OPTIMAL': {
             return {
                 ...state,
-                items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration || a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+                items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
             }
         }
         default:

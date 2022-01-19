@@ -1,11 +1,17 @@
 import React from 'react';
 import {HeadCase, OneCase, TicketCase, TwoCase} from "./TicketsStyle";
-import {ItemsType} from "../Store/TicketReducer";
+import {ItemsType, setTicketsAC} from "../Store/TicketReducer";
+import styled from "styled-components";
+import {useDispatch, useSelector} from "react-redux";
+import {ReducerType} from "../Store/Store";
 
-type TickedType={
+type TickedType = {
     tickets: Array<ItemsType>
 }
-const Ticked = (props:TickedType) => {
+const Ticked = (props: TickedType) => {
+    const dispatch = useDispatch()
+    let tickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
+
     return (
         <div>
             {props.tickets.map((tmap, i) => {
@@ -41,8 +47,21 @@ const Ticked = (props:TickedType) => {
                     })}
                 </TicketCase>
             })}
+            <FiveMoreCase onClick={() => dispatch(setTicketsAC(tickets))}>
+                Показать еще 5 билетов
+            </FiveMoreCase>
         </div>
     );
 };
 
 export default Ticked;
+export const FiveMoreCase = styled.div`
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  background-color: #2196F3;
+  border-radius: 5px;
+  padding: 5px;
+`

@@ -21,10 +21,9 @@ export const AppCase = styled.div`
   height: 100vh;
   overflow: auto;
   display: flex;
-  justify-content: center
+  justify-content: center;
 `
 export const MainCase = styled.div`
-  //background-color: #F3F7FA;
   min-width: 70%;
   display: flex;
   flex-direction: column;

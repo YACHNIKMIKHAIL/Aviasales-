@@ -10,21 +10,21 @@ const Filter = () => {
         <FilterCase>
             <ButtonC style={f === 'SET_POOR' ? {
                 borderRadius: '10px  0 0 10px ',
-                backgroundColor: '#2196F3'
+                backgroundColor: '#2196F3',color:'white'
             } : {borderRadius: '10px  0 0 10px '}}
                      onClick={() => {
                          dispatch(setPoorTicketsAC())
                          setF('SET_POOR')
                      }}>Самый
                 дешевый</ButtonC>
-            <ButtonC style={f === 'SET_FASTS' ? {backgroundColor: '#2196F3'} : {}}
+            <ButtonC style={f === 'SET_FASTS' ? {backgroundColor: '#2196F3',color:'white'} : {}}
                      onClick={() => {
                          dispatch(setFastsTicketsAC())
                          setF('SET_FASTS')
                      }}>Самый быстрый</ButtonC>
             <ButtonC style={f === 'SET_OPTIMAL' ? {
                 borderRadius: '0 10px  10px 0 ',
-                backgroundColor: '#2196F3'
+                backgroundColor: '#2196F3',color:'white'
             } : {borderRadius: '0 10px  10px 0 '}}
                      onClick={() => {
                          dispatch(setOptimalTicketsAC())
@@ -37,16 +37,14 @@ const Filter = () => {
 export default Filter;
 
 export const FilterCase = styled.div`
-  //min-height: 2%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin: 0 0 5px 0;
+  margin: 0 0 10px 0;
 `
 export const ButtonC = styled.div`
-  //background-color: #2196F3;
   border: 1px #2196F3 solid;
   color: black;
   height: 100%;
