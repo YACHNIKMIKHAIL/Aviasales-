@@ -43,8 +43,7 @@ export const ticketReducer = (
             // })
             // return {...state,...mappedTickeds}
 
-
-
+            // return {...state, items: [...state.items, ...action.tickets.slice(0, state.fiveToRender)]}
             return {...state, items: [...state.items, ...action.tickets.slice(0, state.fiveToRender)]}
 
 
