@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 const Content = () => {
     const initFilter: Array<number> = []
+
     const [filter, setFilter] = useState<Array<number>>(initFilter)
 
 

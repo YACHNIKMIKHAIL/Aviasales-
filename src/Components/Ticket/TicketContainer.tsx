@@ -16,15 +16,15 @@ export const TicketContainer = (props: TicketContainerType) => {
     const dispatch = useDispatch<Dispatch>()
 
     useEffect(() => {
-        axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=2yxj1')
+        axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=a14v')
             .then(response => {
                 console.log(response.data.tickets)
                 dispatch(setTicketsAC(response.data.tickets))
             })
-            .catch( (error) => {
+            .catch((error) => {
                 alert('error useEffect')
                 dispatch(setTicketsAC(initailState.items))
-            }  )
+            })
 
 
     }, [])
@@ -46,6 +46,7 @@ export const TicketContainer = (props: TicketContainerType) => {
         forRender = tickets.filter(f => f.segments[0].stops.length < 4 && f.segments[1].stops.length < 4
         )
     }
+
 
     return (
         <div>
