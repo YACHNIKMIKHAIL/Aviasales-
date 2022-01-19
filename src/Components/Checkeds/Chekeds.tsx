@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import {useDispatch} from "react-redux";
 
 type ChekedsType={
     allCheck:(e:boolean)=>void
@@ -10,47 +9,6 @@ type ChekedsType={
     threeCheck:(e:boolean)=>void
 }
 const Chekeds = (props:ChekedsType) => {
-    const dispatch = useDispatch()
-
-    // const allCheck = (e: ChangeEvent<HTMLInputElement>) => {
-    //     if (e.currentTarget.checked) {
-    //         dispatch(setAllTicketsAC())
-    //     } else {
-    //         console.log('what else?')
-    //     }
-    // }
-    // const nullCheck = (e: ChangeEvent<HTMLInputElement>) => {
-    //     if (e.currentTarget.checked) {
-    //         dispatch(setNullTicketsAC())
-    //     } else {
-    //         console.log('what else?')
-    //         dispatch(setAllTicketsAC())
-    //     }
-    // }
-    // const oneCheck = (e: ChangeEvent<HTMLInputElement>) => {
-    //     if (e.currentTarget.checked) {
-    //         dispatch(setOneTicketsAC())
-    //     } else {
-    //         console.log('what else?')
-    //         dispatch(setAllTicketsAC())
-    //     }
-    // }
-    // const twoCheck = (e: ChangeEvent<HTMLInputElement>) => {
-    //     if (e.currentTarget.checked) {
-    //         dispatch(setTwoTicketsAC())
-    //     } else {
-    //         console.log('what else?')
-    //         dispatch(setAllTicketsAC())
-    //     }
-    // }
-    // const threeCheck = (e: ChangeEvent<HTMLInputElement>) => {
-    //     if (e.currentTarget.checked) {
-    //         dispatch(setThreeTicketsAC())
-    //     } else {
-    //         console.log('what else?')
-    //         dispatch(setAllTicketsAC())
-    //     }
-    // }
     return (
         <ChekedsCase>КОЛИЧЕСВО ПЕРЕСАДОК
             <Span> <input onChange={(e) => props.allCheck(e.currentTarget.checked)} type="checkbox"/>Все</Span>

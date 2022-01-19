@@ -12,45 +12,78 @@ export type SegmentsType = {
     // Общее время перелёта в минутах
     duration: number
 }
-export type InitailTicketsType = {
-    // Цена в рублях
-    price: number
-    // Код авиакомпании (iata)
+export type ItemsType = {
     carrier: string
-    // Массив перелётов.
-    // В тестовом задании это всегда поиск "туда-обратно" значит состоит из двух элементов
+    price: number
     segments: Array<SegmentsType>
 }
+export type InitTicketsType = {
+    items: Array<ItemsType>
+}
 // const initailState: Array<InitailTicketsType> = [{
+
+const initState: InitTicketsType = {
+    items: [] as Array<ItemsType>
+}
+//carrier: "TG"
+// price: 86478
+// segments: [{origin: "MOW", destination: "HKT", date: "2022-01-22T16:51:00.000Z", stops: [], duration: 699},…]
+// 0: {origin: "MOW", destination: "HKT", date: "2022-01-22T16:51:00.000Z", stops: [], duration: 699}
+// date: "2022-01-22T16:51:00.000Z"
+// destination: "HKT"
+// duration: 699
+// origin: "MOW"
+// stops: []
+// 1: {origin: "HKT", destination: "MOW", date: "2022-02-11T16:52:00.000Z", stops: ["SIN", "DXB"],…}
+// date: "2022-02-11T16:52:00.000Z"
+// destination: "MOW"
+// duration: 1659
+// origin: "HKT"
+// stops: ["SIN", "DXB"]
+
 //     price:49480,
 //     carrier:"TG",
 //     segments:
-//         [{origin:"MOW",
+//         [
+//         {
+//             origin:"MOW",
 //             destination:"HKT",
 //             date:"2022-01-22T10:47:00.000Z",
 //             stops:["AUH"],
-//             duration:1312},
-//             {origin:"HKT",
-//                 destination:"MOW",
-//                 date:"2022-02-10T22:11:00.000Z",
-//                 stops:["KUL","SHA"],
-//                 duration:1002}]
+//             duration:1312
+//           },
+//             {
+//             origin:"HKT",
+//             destination:"MOW",
+//             date:"2022-02-10T22:11:00.000Z",
+//             stops:["KUL","SHA"],
+//             duration:1002
+//             }
+//                 ]
 // }] as Array<InitailTicketsType>
 
-
-export const ticketReducer = (state = initailState, action: ActionsType): Array<InitailTicketsType> => {
+export const ticketReducer = (
+    state = initState,
+    action: ActionsType
+): InitTicketsType => {
     switch (action.type) {
         case 'SET_TICKETS': {
-            return {...state, ...action.tickets}
+            return {
+                ...state,
+                items: action.tickets
+            }
         }
         case 'SET_POOR': {
-            return state.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)
+            // return state.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)
+            return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)}
         }
         case 'SET_FASTS': {
-            return state.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+            return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)}
+            // return state.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
         }
         case 'SET_OPTIMAL': {
-            return state.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration || a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+            return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration || a.segments[1].duration > b.segments[1].duration ? 1 : -1)}
+            // return state.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration || a.segments[1].duration > b.segments[1].duration ? 1 : -1)
         }
         // case 'SET_ALL': {
         //     return {...state}
@@ -76,14 +109,14 @@ type ActionsType =
     | setPoorTicketsACType
     | setFastsTicketsACType
     | setOptimalTicketsACType
-    // | setAllTicketsACType
-    // | setNullTicketsACType
-    // | setOneTicketsACType
-    // | setTwoTicketsACType
-    // | setThreeTicketsACType
+// | setAllTicketsACType
+// | setNullTicketsACType
+// | setOneTicketsACType
+// | setTwoTicketsACType
+// | setThreeTicketsACType
 
 export type setTicketsACType = ReturnType<typeof setTicketsAC>
-export const setTicketsAC = (tickets: Array<InitailTicketsType>) => ({
+export const setTicketsAC = (tickets: Array<ItemsType>) => ({
     type: 'SET_TICKETS', tickets
 } as const)
 

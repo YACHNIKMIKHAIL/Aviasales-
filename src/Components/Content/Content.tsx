@@ -11,56 +11,46 @@ const Content = () => {
 
     const allCheck = (e: boolean) => {
         if (e) {
-
             setFilter([5, ...filter])
             console.log(filter)
         } else {
-
-            setFilter(filter.slice(1))
+            setFilter(filter.filter(f => f !== 5))
             console.log(filter)
         }
     }
     const nullCheck = (e: boolean) => {
         if (e) {
-
             setFilter([0, ...filter])
             console.log(filter)
         } else {
-
-            setFilter(filter.slice(1))
+            setFilter(filter.filter(f => f !== 0))
             console.log(filter)
         }
     }
     const oneCheck = (e: boolean) => {
         if (e) {
-
             setFilter([1, ...filter])
             console.log(filter)
         } else {
-
-            setFilter(filter.slice(1))
+            setFilter(filter.filter(f => f !== 1))
             console.log(filter)
         }
     }
     const twoCheck = (e: boolean) => {
         if (e) {
-
             setFilter([2, ...filter])
             console.log(filter)
         } else {
-
-            setFilter(filter.slice(1))
+            setFilter(filter.filter(f => f !== 2))
             console.log(filter)
         }
     }
     const threeCheck = (e: boolean) => {
         if (e) {
-
             setFilter([3, ...filter])
             console.log(filter)
         } else {
-
-            setFilter(filter.slice(1))
+            setFilter(filter.filter(f => f !== 3))
             console.log(filter)
         }
     }
@@ -71,7 +61,7 @@ const Content = () => {
                      threeCheck={threeCheck}/>
             <MainCase>
                 <Filter/>
-                <TicketContainer filter={filter[0]}/>
+                <TicketContainer filter={filter}/>
                 <FiveMoreCase>
                     Показать еще 5 билетов
                 </FiveMoreCase>
