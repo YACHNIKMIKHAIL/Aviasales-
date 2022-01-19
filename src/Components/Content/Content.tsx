@@ -96,7 +96,6 @@ export const ContentCase = styled.div`
   height: 90%;
   justify-content: space-around;
   flex-wrap: wrap;
-  border:2px blue solid;
 `
 export const MainCase = styled.div`
   display: flex;

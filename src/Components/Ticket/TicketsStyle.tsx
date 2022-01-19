@@ -20,7 +20,6 @@ export const OneCase = styled.div`
   min-height: 35%;
   display: flex;
   justify-content: space-between;
-  border:2px red solid;
 `
 export const TwoCase = styled.div`
   color: #071f33;

@@ -47,7 +47,7 @@ const Ticked = (props: TickedType) => {
                     })}
                 </TicketCase>
             })}
-            <FiveMoreCase onClick={() => dispatch(setTicketsAC(tickets))}>
+            <FiveMoreCase onClick={() => dispatch(setTicketsAC(tickets,5))}>
                 Показать еще 5 билетов
             </FiveMoreCase>
         </div>

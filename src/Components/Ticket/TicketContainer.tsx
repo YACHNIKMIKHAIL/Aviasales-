@@ -16,12 +16,12 @@ export const TicketContainer = (props: TicketContainerType) => {
         axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=30yyr')
             .then(response => {
                 console.log(response.data.tickets)
-                dispatch(setTicketsAC(response.data.tickets))
+                dispatch(setTicketsAC(response.data.tickets,5))
             })
             .catch((error) => {
                 alert('error useEffect')
                 console.log(initailState.items)
-                dispatch(setTicketsAC(initailState.items))
+                dispatch(setTicketsAC(initailState.items,5))
             })
 
 

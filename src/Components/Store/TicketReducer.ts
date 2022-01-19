@@ -23,24 +23,37 @@ const initState: InitTicketsType = {
     items: [] as Array<ItemsType>
 }
 
+
 export const ticketReducer = (
     state = initState,
     action: ActionsType
 ): InitTicketsType => {
+    let slicer = 5
+    console.log(slicer)
+
     switch (action.type) {
         case 'SET_TICKETS': {
-            return {...state,items:[...action.tickets]}
-            // let onlyFive = []
-            // for (let i = 0; i < 5; i++) {
-            //     onlyFive.push(action.tickets[i])
-            // }
-            // return {
-            //     ...state,
-            //     items: [...state.items, ...onlyFive]
-            // }
+            debugger
+            // let start = 0
             // let slicer = 5
-            // let newState = {...state, items: state.items.slice(0, slicer)}
-            // slicer += 5
+            // let newState = {...state, items: [...state.items, ...action.tickets.slice(start, slicer)]}
+            // start = start + action.s
+            // slicer = slicer + action.s
+            // return newState
+
+            let onlyFive = []
+            for (let i = 0; i < slicer; i++) {
+                onlyFive.push(action.tickets[i])
+            }
+            slicer=slicer+5
+            return {
+                ...state,
+                items: [ ...onlyFive,...state.items,]
+            }
+
+            // let slicer = 5
+            // let newState = {...state, items: [...state.items,...action.tickets.slice(0, slicer)]}
+            // slicer = slicer+action.s
             // return newState
         }
         case 'SET_POOR': {
@@ -69,8 +82,9 @@ type ActionsType =
     | setOptimalTicketsACType
 
 export type setTicketsACType = ReturnType<typeof setTicketsAC>
-export const setTicketsAC = (tickets: Array<ItemsType>) => ({
-    type: 'SET_TICKETS', tickets
+export const setTicketsAC = (tickets: Array<ItemsType>, s: number) => ({
+    type: 'SET_TICKETS', tickets, s
+
 } as const)
 
 export type setPoorTicketsACType = ReturnType<typeof setPoorTicketsAC>
