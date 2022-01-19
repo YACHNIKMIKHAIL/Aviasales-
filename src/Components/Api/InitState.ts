@@ -1615,5 +1615,6 @@ export const initailState: InitTicketsType = {
                 "duration": 1302
             }]
         },
-    ]
+    ],
+    fiveToRender:5
 }
