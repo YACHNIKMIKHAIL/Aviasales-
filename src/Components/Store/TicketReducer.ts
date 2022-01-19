@@ -34,6 +34,8 @@ export const ticketReducer = (
         case 'SET_TICKETS': {
             debugger
 
+            return {...state, items: [...state.items, ...action.tickets.slice(0, state.fiveToRender)]}
+
             // const mappedTickeds = action.tickets.map(m => {
             //     let render = 1
             //     if (render >= state.fiveToRender) {
@@ -42,12 +44,6 @@ export const ticketReducer = (
             //     return ({...m})
             // })
             // return {...state,...mappedTickeds}
-
-            // return {...state, items: [...state.items, ...action.tickets.slice(0, state.fiveToRender)]}
-            return {...state, items: [...state.items, ...action.tickets.slice(0, state.fiveToRender)]}
-
-
-
             // let onlyFive = []
             // for (let i = 0; i < state.fiveToRender; i++) {
             //     onlyFive.push(action.tickets[i])
@@ -70,28 +66,24 @@ export const ticketReducer = (
             // return newState
         }
         case
-        'SET_POOR'
-        : {
+        'SET_POOR': {
             return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)}
         }
         case
-        'SET_FASTS'
-        : {
+        'SET_FASTS': {
             return {
                 ...state,
                 items: state.items.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
             }
         }
-        case 'SET_OPTIMAL'
-        : {
+        case 'SET_OPTIMAL': {
             return {
                 ...state,
                 items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
             }
         }
 
-        case 'SET_MAX'
-        : {
+        case 'SET_MAX': {
             debugger
             return {
                 ...state, fiveToRender: action.count
