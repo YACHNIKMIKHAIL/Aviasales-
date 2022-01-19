@@ -1,67 +1,79 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {useState} from 'react';
 import Filter from "../Filter/Filter";
 import {TicketContainer} from "../Ticket/TicketContainer";
 import Chekeds from "../Checkeds/Chekeds";
 import styled from "styled-components";
-import {
-    setAllTicketsAC,
-    setNullTicketsAC,
-    setOneTicketsAC,
-    setThreeTicketsAC,
-    setTwoTicketsAC
-} from "../Store/TicketReducer";
 
 const Content = () => {
-    const [filter,setFilter]=useState<number>(5)
+    const initFilter: Array<number> = []
+    const [filter, setFilter] = useState<Array<number>>(initFilter)
+
 
     const allCheck = (e: boolean) => {
         if (e) {
-            setFilter(5)
+
+            setFilter([5, ...filter])
+            console.log(filter)
         } else {
-            console.log('what else?')
+
+            setFilter(filter.slice(1))
+            console.log(filter)
         }
     }
     const nullCheck = (e: boolean) => {
         if (e) {
-            setFilter(0)
+
+            setFilter([0, ...filter])
+            console.log(filter)
         } else {
-            console.log('what else?')
-            setFilter(5)
+
+            setFilter(filter.slice(1))
+            console.log(filter)
         }
     }
     const oneCheck = (e: boolean) => {
         if (e) {
-            setFilter(1)
+
+            setFilter([1, ...filter])
+            console.log(filter)
         } else {
-            console.log('what else?')
-            setFilter(5)
+
+            setFilter(filter.slice(1))
+            console.log(filter)
         }
     }
     const twoCheck = (e: boolean) => {
         if (e) {
-            setFilter(2)
+
+            setFilter([2, ...filter])
+            console.log(filter)
         } else {
-            console.log('what else?')
-            setFilter(5)
+
+            setFilter(filter.slice(1))
+            console.log(filter)
         }
     }
     const threeCheck = (e: boolean) => {
         if (e) {
-            setFilter(3)
+
+            setFilter([3, ...filter])
+            console.log(filter)
         } else {
-            console.log('what else?')
-            setFilter(5)
+
+            setFilter(filter.slice(1))
+            console.log(filter)
         }
     }
 
     return (
         <ContentCase>
-            <Chekeds allCheck={allCheck} nullCheck={nullCheck} oneCheck={oneCheck} twoCheck={twoCheck} threeCheck={threeCheck}/>
+            <Chekeds allCheck={allCheck} nullCheck={nullCheck} oneCheck={oneCheck} twoCheck={twoCheck}
+                     threeCheck={threeCheck}/>
             <MainCase>
                 <Filter/>
-                <TicketContainer filter={filter}/>
+                <TicketContainer filter={filter[0]}/>
                 <FiveMoreCase>
-                        Показать еще 5 билетов
+                    Показать еще 5 билетов
                 </FiveMoreCase>
             </MainCase>
         </ContentCase>
@@ -83,14 +95,14 @@ export const MainCase = styled.div`
   align-items: center
 `
 export const FiveMoreCase = styled.div`
-  position:absolute;
-  bottom:0;
+  position: absolute;
+  bottom: 0;
   width: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: whitesmoke;
-  background-color:#2196F3;
+  background-color: #2196F3;
   border-radius: 5px;
   padding: 5px;
 `

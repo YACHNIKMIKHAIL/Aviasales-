@@ -1,14 +1,7 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
-import {HeadCase, OneCase, TicketCase, TwoCase} from "./TicketsStyle";
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {ReducerType} from "../Store/Store";
-import {
-    InitailTicketsType,
-    setAllTicketsAC,
-    setNullTicketsAC,
-    setOneTicketsAC, setThreeTicketsAC,
-    setTwoTicketsAC
-} from "../Store/TicketReducer";
+import {InitailTicketsType} from "../Store/TicketReducer";
 import {Dispatch} from "redux";
 import axios from "axios";
 import Ticked from "./Ticked";

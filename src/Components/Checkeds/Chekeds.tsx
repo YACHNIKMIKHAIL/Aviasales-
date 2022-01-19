@@ -1,13 +1,7 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {
-    setAllTicketsAC,
-    setNullTicketsAC,
-    setOneTicketsAC,
-    setThreeTicketsAC,
-    setTwoTicketsAC
-} from "../Store/TicketReducer";
+
 type ChekedsType={
     allCheck:(e:boolean)=>void
     nullCheck:(e:boolean)=>void
