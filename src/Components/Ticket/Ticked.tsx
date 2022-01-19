@@ -15,6 +15,7 @@ const Ticked = (props: TickedType) => {
 
     const renderFive = () => {
         dispatch(setMaxCountAC(max+5))
+        dispatch(setTicketsAC(tickets))
         // return max + 5
     }
     let count=0

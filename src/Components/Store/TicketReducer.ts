@@ -44,12 +44,10 @@ export const ticketReducer = (
             // return {...state,...mappedTickeds}
 
 
-            let start = 0
-            let slicer = 5
-            let newState = {...state, items: [...state.items, ...action.tickets.slice(start, slicer)]}
-            start = start + action.s
-            slicer = slicer + action.s
-            return newState
+
+            return {...state, items: [...state.items, ...action.tickets.slice(0, state.fiveToRender)]}
+
+
 
             // let onlyFive = []
             // for (let i = 0; i < state.fiveToRender; i++) {
@@ -112,8 +110,8 @@ type ActionsType =
     | setMaxCountACType
 
 export type setTicketsACType = ReturnType<typeof setTicketsAC>
-export const setTicketsAC = (tickets: Array<ItemsType>, s: number) => ({
-    type: 'SET_TICKETS', tickets, s
+export const setTicketsAC = (tickets: Array<ItemsType>) => ({
+    type: 'SET_TICKETS', tickets
 
 } as const)
 
