@@ -68,9 +68,13 @@ export const ticketReducer = (
 ): InitTicketsType => {
     switch (action.type) {
         case 'SET_TICKETS': {
+            let onlyFive = []
+            for (let i = 0; i < 5; i++) {
+                onlyFive.push(action.tickets[i])
+            }
             return {
                 ...state,
-                items: action.tickets
+                items: [...state.items, ...onlyFive]
             }
         }
         case 'SET_POOR': {
@@ -78,11 +82,17 @@ export const ticketReducer = (
             return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)}
         }
         case 'SET_FASTS': {
-            return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)}
+            return {
+                ...state,
+                items: state.items.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+            }
             // return state.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
         }
         case 'SET_OPTIMAL': {
-            return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration || a.segments[1].duration > b.segments[1].duration ? 1 : -1)}
+            return {
+                ...state,
+                items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration || a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+            }
             // return state.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration || a.segments[1].duration > b.segments[1].duration ? 1 : -1)
         }
         // case 'SET_ALL': {

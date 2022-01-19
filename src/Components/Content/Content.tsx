@@ -3,10 +3,15 @@ import Filter from "../Filter/Filter";
 import {TicketContainer} from "../Ticket/TicketContainer";
 import Chekeds from "../Checkeds/Chekeds";
 import styled from "styled-components";
+import {useDispatch, useSelector} from "react-redux";
+import {ItemsType, setTicketsAC} from "../Store/TicketReducer";
+import {ReducerType} from "../Store/Store";
 
 const Content = () => {
-    const initFilter: Array<number> = []
+    const dispatch = useDispatch()
+    const tickeds = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
 
+    const initFilter: Array<number> = []
     const [filter, setFilter] = useState<Array<number>>(initFilter)
 
 
@@ -63,7 +68,7 @@ const Content = () => {
             <MainCase>
                 <Filter/>
                 <TicketContainer filter={filter}/>
-                <FiveMoreCase>
+                <FiveMoreCase onClick={() => dispatch(setTicketsAC(tickeds))}>
                     Показать еще 5 билетов
                 </FiveMoreCase>
             </MainCase>
