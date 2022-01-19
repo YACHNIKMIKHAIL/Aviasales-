@@ -1,6 +1,6 @@
 import React from 'react';
 import {HeadCase, OneCase, TicketCase, TwoCase} from "./TicketsStyle";
-import {ItemsType, setMaxCountAC, setTicketsAC} from "../Store/TicketReducer";
+import {ItemsType, showFiveAC} from "../Store/TicketReducer";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {ReducerType} from "../Store/Store";
@@ -10,14 +10,10 @@ type TickedType = {
 }
 const Ticked = (props: TickedType) => {
     const dispatch = useDispatch()
-    let tickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
     const max = useSelector<ReducerType, number>(state => state.tickets.fiveToRender)
 
     const renderFive = () => {
-        dispatch(setMaxCountAC(max+5))
-        dispatch(setTicketsAC(tickets))
-        // dispatch(showFiveAC())
-
+        dispatch(showFiveAC())
     }
     let count=0
     return (
@@ -59,7 +55,6 @@ const Ticked = (props: TickedType) => {
                 </TicketCase>
             })}
             <FiveMoreCase onClick={() => {
-                // dispatch(setTicketsAC(tickets, 5))
                 renderFive()
             }}>
                 Показать еще 5 билетов

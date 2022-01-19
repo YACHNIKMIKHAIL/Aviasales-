@@ -16,11 +16,13 @@ export type ItemsType = {
     segments: Array<SegmentsType>
 }
 export type InitTicketsType = {
+    render:Array<ItemsType>
     items: Array<ItemsType>
     fiveToRender: number
 }
 
 const initState: InitTicketsType = {
+    render:[] as Array<ItemsType>,
     items: [] as Array<ItemsType>,
     fiveToRender: 5
 }
@@ -33,42 +35,14 @@ export const ticketReducer = (
     switch (action.type) {
         case 'SET_TICKETS': {
             debugger
+            return {...state, render:[...action.tickets],
+                items: [...state.items, ...action.tickets.slice(0, state.fiveToRender)],fiveToRender:state.fiveToRender+5}
 
-            return {...state, items: [...state.items, ...action.tickets.slice(0, state.fiveToRender)]}
-
-
-            // const mappedTickeds = action.tickets.map(m => {
-            //     let render = 1
-            //     if (render >= state.fiveToRender) {
-            //         return
-            //     }
-            //     return ({...m})
-            // })
-            // return {...state,...mappedTickeds}
-            // let onlyFive = []
-            // for (let i = 0; i < state.fiveToRender; i++) {
-            //     onlyFive.push(action.tickets[i])
-            // }
-            // return {
-            //     ...state,
-            //     fiveToRender:state.fiveToRender+action.s,
-            //     items: [ ...onlyFive,...state.items,]
-            // }
-
-            // return {
-            //     ...state,
-            //     fiveToRender: state.fiveToRender + action.s,
-            //     items: [...action.tickets.slice(state.fiveToRender)]
-            // }
-
-            // let slicer = 5
-            // let newState = {...state, items: [...state.items,...action.tickets.slice(0, slicer)]}
-            // slicer = slicer+action.s
-            // return newState
         }
-        // case 'SHOW_FIVE': {
-        //      return {...state, items: [...state.items.slice(0, state.fiveToRender)]}
-        // }
+        case 'SHOW_FIVE': {
+            debugger
+             return {...state, items: [...state.render.slice(0, state.fiveToRender)],fiveToRender:state.fiveToRender+5}
+        }
         case 'SET_POOR': {
             return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)}
         }
@@ -101,7 +75,7 @@ type ActionsType =
     | setFastsTicketsACType
     | setOptimalTicketsACType
     | setMaxCountACType
-    // | showFiveACType
+    | showFiveACType
 
 export type setTicketsACType = ReturnType<typeof setTicketsAC>
 export const setTicketsAC = (tickets: Array<ItemsType>) => ({
@@ -129,7 +103,7 @@ export const setMaxCountAC = (count: number) => ({
     type: 'SET_MAX', count
 } as const)
 
-// export type showFiveACType = ReturnType<typeof showFiveAC>
-// export const showFiveAC = () => ({
-//     type: 'SHOW_FIVE'
-// } as const)
+export type showFiveACType = ReturnType<typeof showFiveAC>
+export const showFiveAC = () => ({
+    type: 'SHOW_FIVE'
+} as const)
