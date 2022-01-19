@@ -1,6 +1,6 @@
 import React from 'react';
 import {HeadCase, OneCase, TicketCase, TwoCase} from "./TicketsStyle";
-import {InitTicketsType, ItemsType} from "../Store/TicketReducer";
+import {ItemsType} from "../Store/TicketReducer";
 
 type TickedType={
     tickets: Array<ItemsType>

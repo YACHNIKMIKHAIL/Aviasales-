@@ -9,7 +9,6 @@ import {ReducerType} from "../Store/Store";
 
 const Content = () => {
     const dispatch = useDispatch()
-    const tickeds = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
 
     const initFilter: Array<number> = []
     const [filter, setFilter] = useState<Array<number>>(initFilter)
@@ -60,6 +59,23 @@ const Content = () => {
             console.log(filter)
         }
     }
+    let tickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
+    let forRender = tickets
+    if (filter.includes(0)) {
+        forRender = tickets.filter(f => f.segments[0].stops.length === 0 && f.segments[1].stops.length === 0)
+    }
+    if (filter.includes(1)) {
+        forRender = tickets.filter(f => f.segments[0].stops.length < 2 && f.segments[1].stops.length < 2
+        )
+    }
+    if (filter.includes(2)) {
+        forRender = tickets.filter(f => f.segments[0].stops.length < 3 && f.segments[1].stops.length < 3
+        )
+    }
+    if (filter.includes(3)) {
+        forRender = tickets.filter(f => f.segments[0].stops.length < 4 && f.segments[1].stops.length < 4
+        )
+    }
 
     return (
         <ContentCase>
@@ -67,8 +83,8 @@ const Content = () => {
                      threeCheck={threeCheck}/>
             <MainCase>
                 <Filter/>
-                <TicketContainer filter={filter}/>
-                <FiveMoreCase onClick={() => dispatch(setTicketsAC(tickeds))}>
+                <TicketContainer tickets={forRender}/>
+                <FiveMoreCase onClick={() => dispatch(setTicketsAC(tickets))}>
                     Показать еще 5 билетов
                 </FiveMoreCase>
             </MainCase>
