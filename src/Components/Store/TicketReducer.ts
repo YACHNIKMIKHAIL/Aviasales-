@@ -110,6 +110,12 @@ export const ticketReducer = (
                     ...state,
                     stops: {...state.stops, all: true, null: action.value}
                 }
+            }
+            if (action.value && state.stops.one && state.stops.two && state.stops.three) {
+                return {
+                    ...state,
+                    stops: {...state.stops, all: true, null: false, one: false, two: false, three: false}
+                }
             } else {
                 return {
                     ...state, stops: {
@@ -125,7 +131,13 @@ export const ticketReducer = (
                     ...state,
                     stops: {...state.stops, all: true, one: action.value}
                 }
-            } else {
+            }
+            if (action.value && state.stops.null && state.stops.two && state.stops.three) {
+                return {
+                    ...state,
+                    stops: {...state.stops, all: true, null: false, one: false, two: false, three: false}
+                }
+            }else {
                 return {
                     ...state, stops: {
                         ...state.stops, one: action.value,
@@ -141,7 +153,13 @@ export const ticketReducer = (
                     ...state,
                     stops: {...state.stops, all: true, two: action.value}
                 }
-            } else {
+            }
+            if (action.value && state.stops.null && state.stops.one && state.stops.three) {
+                return {
+                    ...state,
+                    stops: {...state.stops, all: true, null: false, one: false, two: false, three: false}
+                }
+            }else {
                 return {
                     ...state, stops: {
                         ...state.stops, two: action.value,
@@ -157,7 +175,13 @@ export const ticketReducer = (
                     ...state,
                     stops: {...state.stops, all: true, three: action.value}
                 }
-            } else {
+            }
+            if (action.value && state.stops.null && state.stops.one && state.stops.two) {
+                return {
+                    ...state,
+                    stops: {...state.stops, all: true, null: false, one: false, two: false, three: false}
+                }
+            }else {
                 return {
                     ...state, stops: {
                         ...state.stops, three: action.value,
