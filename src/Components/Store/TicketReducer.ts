@@ -44,7 +44,7 @@ const initState: InitTicketsType = {
     filters: {
         POOR: false,
         FASTS: false,
-        OPTIMAL: false
+        OPTIMAL: true
     },
     stops: {
         all: true,
@@ -104,18 +104,18 @@ export const ticketReducer = (
             debugger
             if (!action.value && !state.stops.null && !state.stops.one && !state.stops.two && !state.stops.three) {
                 return {
-                    ...state, stops: {...state.stops,all:action.value ,one: !state.stops.one}
+                    ...state, stops: {...state.stops, all: action.value, one: !state.stops.one}
                 }
-            } else if (action.value && state.stops.null && state.stops.one && state.stops.two && state.stops.three) {
+            } else if (action.value || state.stops.null || state.stops.one || state.stops.two || state.stops.three) {
                 return {
                     ...state,
                     stops: {
                         ...state.stops,
                         all: action.value,
-                        null: !state.stops.null,
-                        one: !state.stops.one,
-                        two: !state.stops.two,
-                        three: !state.stops.three
+                        null: false,
+                        one: false,
+                        two: false,
+                        three: false
                     }
                 }
             } else {

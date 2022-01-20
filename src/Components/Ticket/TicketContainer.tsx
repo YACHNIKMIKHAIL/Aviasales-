@@ -14,18 +14,16 @@ export const TicketContainer = (props: TicketContainerType) => {
     const dispatch = useDispatch<Dispatch>()
 
     useEffect(() => {
-        axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=2i0o9')
+        axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=2b59e')
             .then(response => {
                 console.log(response.data.tickets)
                 dispatch(setTicketsAC(response.data.tickets))
             })
             .catch((error) => {
-                alert('error useEffect')
+                alert(`server error but it's no problem)`)
                 console.log(initailState.items)
                 dispatch(setTicketsAC(initailState.items))
             })
-
-
     }, [])
 
     const actualFilter=useSelector<ReducerType,FiltersType>(state=>state.tickets.filters)
@@ -35,12 +33,13 @@ export const TicketContainer = (props: TicketContainerType) => {
         forRender = props.tickets.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)
     }
     if (actualFilter.FASTS) {
-        forRender = props.tickets.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
-
+        forRender = props.tickets.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration
+        && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
     }
     if (actualFilter.OPTIMAL) {
-        forRender = props.tickets.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
-
+        forRender = props.tickets.map(m => ({...m})).sort((a, b) => a.price > b.price
+        && a.segments[0].duration > b.segments[0].duration
+        && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
     }
 
     return (
