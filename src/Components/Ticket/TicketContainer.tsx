@@ -28,7 +28,6 @@ export const TicketContainer = (props: TicketContainerType) => {
 
     }, [])
 
-    // const filteredTickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
     const actualFilter=useSelector<ReducerType,FiltersType>(state=>state.tickets.filters)
 
     let forRender = props.tickets

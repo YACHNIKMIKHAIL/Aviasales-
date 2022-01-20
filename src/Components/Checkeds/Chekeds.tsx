@@ -3,45 +3,35 @@ import styled from "styled-components";
 import {useDispatch} from "react-redux";
 import {setAllAC, setNullAC, setOneAC, setThreeAC, setTwoAC} from "../Store/TicketReducer";
 
-type ChekedsType={
-    allCheck:(e:boolean)=>void
-    nullCheck:(e:boolean)=>void
-    oneCheck:(e:boolean)=>void
-    twoCheck:(e:boolean)=>void
-    threeCheck:(e:boolean)=>void
-}
-const Chekeds = (props:ChekedsType) => {
-    const dispatch=useDispatch()
+type ChekedsType = {}
+const Chekeds = (props: ChekedsType) => {
+    const dispatch = useDispatch()
     return (
         <ChekedsCase>КОЛИЧЕСВО ПЕРЕСАДОК
-            <Span> <input onChange={(e) => {
+            <label><Span> <input onChange={(e) => {
                 dispatch(setAllAC())
-                // props.allCheck(e.currentTarget.checked)
+
             }
-            } type="checkbox" defaultChecked/>Все</Span>
-            <Span> <input onChange={(e) => {
+            } type="checkbox" defaultChecked/>Все</Span></label>
+            <label><Span> <input onChange={(e) => {
                 dispatch(setNullAC())
-                // props.nullCheck(e.currentTarget.checked)
             }
 
-            } type="checkbox"/>Без пересадок</Span>
-            <Span> <input onChange={(e) => {
+            } type="checkbox"/>Без пересадок</Span></label>
+            <label><Span> <input onChange={(e) => {
                 dispatch(setOneAC())
-                // props.oneCheck(e.currentTarget.checked)
             }
 
-            } type="checkbox"/>1 пересадка</Span>
-            <Span> <input onChange={(e) => {
+            } type="checkbox"/>1 пересадка</Span></label>
+            <label><Span> <input onChange={(e) => {
                 dispatch(setTwoAC())
-                // props.twoCheck(e.currentTarget.checked)
             }
 
-            } type="checkbox"/>2 пересадки</Span>
-            <Span> <input onChange={(e) => {
+            } type="checkbox"/>2 пересадки</Span></label>
+            <label><Span> <input onChange={(e) => {
                 dispatch(setThreeAC())
-                // props.threeCheck(e.currentTarget.checked)
             }
-            } type="checkbox"/>3 пересадки</Span>
+            } type="checkbox"/>3 пересадки</Span></label>
         </ChekedsCase>
     );
 };
