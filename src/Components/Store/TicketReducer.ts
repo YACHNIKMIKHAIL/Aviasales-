@@ -100,41 +100,69 @@ export const ticketReducer = (
         case 'SET_ALL': {
             debugger
             return {
-                ...state, stops: {...state.stops, all: action.value}
+                ...state, stops: {...state.stops, all: action.value, null: false, one: false, two: false, three: false}
             }
         }
         case 'SET_NULL': {
             debugger
-            return {
-                ...state, stops: {
-                    ...state.stops, null: action.value,
-                    all: false
+            if (!action.value && !state.stops.one && !state.stops.two && !state.stops.three) {
+                return {
+                    ...state,
+                    stops: {...state.stops, all: true, null: action.value}
+                }
+            } else {
+                return {
+                    ...state, stops: {
+                        ...state.stops, null: action.value,
+                        all: false
+                    }
                 }
             }
         }
         case 'SET_ONE': {
-            return {
-                ...state, stops: {
-                    ...state.stops, one: action.value,
-                    all: false
+            if (!action.value && !state.stops.null && !state.stops.two && !state.stops.three) {
+                return {
+                    ...state,
+                    stops: {...state.stops, all: true, one: action.value}
+                }
+            } else {
+                return {
+                    ...state, stops: {
+                        ...state.stops, one: action.value,
+                        all: false
+                    }
                 }
             }
         }
         case 'SET_TWO': {
             debugger
-            return {
-                ...state, stops: {
-                    ...state.stops, two: action.value,
-                    all: false
+            if (!action.value && !state.stops.null && !state.stops.one && !state.stops.three) {
+                return {
+                    ...state,
+                    stops: {...state.stops, all: true, two: action.value}
+                }
+            } else {
+                return {
+                    ...state, stops: {
+                        ...state.stops, two: action.value,
+                        all: false
+                    }
                 }
             }
         }
         case 'SET_THREE': {
             debugger
-            return {
-                ...state, stops: {
-                    ...state.stops, three: action.value,
-                    all: false
+            if (!action.value && !state.stops.null && !state.stops.one && !state.stops.two) {
+                return {
+                    ...state,
+                    stops: {...state.stops, all: true, three: action.value}
+                }
+            } else {
+                return {
+                    ...state, stops: {
+                        ...state.stops, three: action.value,
+                        all: false
+                    }
                 }
             }
         }
