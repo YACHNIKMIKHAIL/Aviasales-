@@ -15,16 +15,23 @@ export type ItemsType = {
     price: number
     segments: Array<SegmentsType>
 }
+export type FiltersType={
+    POOR:boolean
+    FASTS:boolean
+    OPTIMAL:boolean
+}
 export type InitTicketsType = {
     render:Array<ItemsType>
     items: Array<ItemsType>
     fiveToRender: number
+    filters:FiltersType
 }
 
 const initState: InitTicketsType = {
     render:[] as Array<ItemsType>,
     items: [] as Array<ItemsType>,
-    fiveToRender: 5
+    fiveToRender: 5,
+    filters: {POOR:false, FASTS:false, OPTIMAL:false}
 }
 
 
@@ -44,18 +51,20 @@ export const ticketReducer = (
              return {...state, items: [...state.render.slice(0, state.fiveToRender)],fiveToRender:state.fiveToRender+5}
         }
         case 'SET_POOR': {
-            return {...state, items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)}
+            return {...state, filters:{...state.filters,POOR:!state.filters.POOR}
+                // items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)
+            }
         }
         case 'SET_FASTS': {
             return {
-                ...state,
-                items: state.items.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+                ...state,filters:{...state.filters,FASTS:!state.filters.FASTS}
+                // items: state.items.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
             }
         }
         case 'SET_OPTIMAL': {
             return {
-                ...state,
-                items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+                ...state,filters:{...state.filters,OPTIMAL:!state.filters.OPTIMAL}
+                // items: state.items.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
             }
         }
 

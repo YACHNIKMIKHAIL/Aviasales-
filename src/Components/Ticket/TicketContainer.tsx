@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
-import {useDispatch} from "react-redux";
-import {ItemsType, setTicketsAC} from "../Store/TicketReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {FiltersType, ItemsType, setTicketsAC} from "../Store/TicketReducer";
 import {Dispatch} from "redux";
 import axios from "axios";
 import Ticked from "./Ticked";
 import {initailState} from "../Api/InitState";
+import {ReducerType} from "../Store/Store";
 
 type TicketContainerType = {
     tickets: Array<ItemsType>
@@ -27,9 +28,25 @@ export const TicketContainer = (props: TicketContainerType) => {
 
     }, [])
 
+    const filteredTickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
+    const actualFilter=useSelector<ReducerType,FiltersType>(state=>state.tickets.filters)
+
+    let forRender = filteredTickets
+    if (actualFilter.POOR) {
+        forRender = filteredTickets.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)
+    }
+    if (actualFilter.FASTS) {
+        forRender = filteredTickets.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+
+    }
+    if (actualFilter.OPTIMAL) {
+        forRender = filteredTickets.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+
+    }
+
     return (
         <div>
-            <Ticked tickets={props.tickets}/>
+            <Ticked tickets={forRender}/>
         </div>
     );
 };
