@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
+import {useDispatch} from "react-redux";
+import {setAllAC, setNullAC, setOneAC, setThreeAC, setTwoAC} from "../Store/TicketReducer";
 
 type ChekedsType={
     allCheck:(e:boolean)=>void
@@ -9,13 +11,14 @@ type ChekedsType={
     threeCheck:(e:boolean)=>void
 }
 const Chekeds = (props:ChekedsType) => {
+    const dispatch=useDispatch()
     return (
         <ChekedsCase>КОЛИЧЕСВО ПЕРЕСАДОК
-            <Span> <input onChange={(e) => props.allCheck(e.currentTarget.checked)} type="checkbox"/>Все</Span>
-            <Span> <input onChange={(e) => props.nullCheck(e.currentTarget.checked)} type="checkbox"/>Без пересадок</Span>
-            <Span> <input onChange={(e) => props.oneCheck(e.currentTarget.checked)} type="checkbox"/>1 пересадка</Span>
-            <Span> <input onChange={(e) => props.twoCheck(e.currentTarget.checked)} type="checkbox"/>2 пересадки</Span>
-            <Span> <input onChange={(e) => props.threeCheck(e.currentTarget.checked)} type="checkbox"/>3 пересадки</Span>
+            <Span> <input onChange={(e) => dispatch(setAllAC())} type="checkbox"/>Все</Span>
+            <Span> <input onChange={(e) => dispatch(setNullAC())} type="checkbox"/>Без пересадок</Span>
+            <Span> <input onChange={(e) => dispatch(setOneAC())} type="checkbox"/>1 пересадка</Span>
+            <Span> <input onChange={(e) => dispatch(setTwoAC())} type="checkbox"/>2 пересадки</Span>
+            <Span> <input onChange={(e) => dispatch(setThreeAC())} type="checkbox"/>3 пересадки</Span>
         </ChekedsCase>
     );
 };

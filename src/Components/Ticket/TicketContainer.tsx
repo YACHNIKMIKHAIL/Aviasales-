@@ -28,19 +28,19 @@ export const TicketContainer = (props: TicketContainerType) => {
 
     }, [])
 
-    const filteredTickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
+    // const filteredTickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
     const actualFilter=useSelector<ReducerType,FiltersType>(state=>state.tickets.filters)
 
-    let forRender = filteredTickets
+    let forRender = props.tickets
     if (actualFilter.POOR) {
-        forRender = filteredTickets.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)
+        forRender = props.tickets.map(m => ({...m})).sort((a, b) => a.price > b.price ? 1 : -1)
     }
     if (actualFilter.FASTS) {
-        forRender = filteredTickets.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+        forRender = props.tickets.map(m => ({...m})).sort((a, b) => a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
 
     }
     if (actualFilter.OPTIMAL) {
-        forRender = filteredTickets.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+        forRender = props.tickets.map(m => ({...m})).sort((a, b) => a.price > b.price && a.segments[0].duration > b.segments[0].duration && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
 
     }
 

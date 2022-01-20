@@ -4,7 +4,7 @@ import {TicketContainer} from "../Ticket/TicketContainer";
 import Chekeds from "../Checkeds/Chekeds";
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {ItemsType, setTicketsAC} from "../Store/TicketReducer";
+import {ItemsType, setTicketsAC, StopsType} from "../Store/TicketReducer";
 import {ReducerType} from "../Store/Store";
 
 const Content = () => {
@@ -59,21 +59,40 @@ const Content = () => {
             console.log(filter)
         }
     }
-    let tickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
+    // let tickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
+    // let forRender = tickets
+    // if (filter.includes(0)) {
+    //     forRender = tickets.filter(f => f.segments[0].stops.length === 0 && f.segments[1].stops.length === 0)
+    // }
+    // if (filter.includes(1)) {
+    //     forRender = tickets.filter(f => f.segments[0].stops.length < 2 && f.segments[1].stops.length < 2
+    //     )
+    // }
+    // if (filter.includes(2)) {
+    //     forRender = tickets.filter(f => f.segments[0].stops.length < 3 && f.segments[1].stops.length < 3
+    //     )
+    // }
+    // if (filter.includes(3)) {
+    //     forRender = tickets.filter(f => f.segments[0].stops.length < 4 && f.segments[1].stops.length < 4
+    //     )
+    // }
+
+    const tickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
+    const stopsState = useSelector<ReducerType, StopsType>(state => state.tickets.stops)
     let forRender = tickets
-    if (filter.includes(0)) {
+    if (stopsState.null) {
         forRender = tickets.filter(f => f.segments[0].stops.length === 0 && f.segments[1].stops.length === 0)
     }
-    if (filter.includes(1)) {
-        forRender = tickets.filter(f => f.segments[0].stops.length < 2 && f.segments[1].stops.length < 2
+    if (stopsState.one) {
+        forRender = tickets.filter(f => f.segments[0].stops.length === 1 && f.segments[1].stops.length === 1
         )
     }
-    if (filter.includes(2)) {
-        forRender = tickets.filter(f => f.segments[0].stops.length < 3 && f.segments[1].stops.length < 3
+    if (stopsState.two) {
+        forRender = tickets.filter(f => f.segments[0].stops.length === 2 && f.segments[1].stops.length === 2
         )
     }
-    if (filter.includes(3)) {
-        forRender = tickets.filter(f => f.segments[0].stops.length < 4 && f.segments[1].stops.length < 4
+    if (stopsState.three) {
+        forRender = tickets.filter(f => f.segments[0].stops.length === 3 && f.segments[1].stops.length === 3
         )
     }
 
