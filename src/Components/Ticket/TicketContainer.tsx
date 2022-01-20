@@ -38,8 +38,8 @@ export const TicketContainer = (props: TicketContainerType) => {
     }
     if (actualFilter.OPTIMAL) {
         forRender = props.tickets.map(m => ({...m})).sort((a, b) => a.price > b.price
-        && a.segments[0].duration > b.segments[0].duration
-        && a.segments[1].duration > b.segments[1].duration ? 1 : -1)
+        && (a.segments[0].duration > b.segments[0].duration
+        && a.segments[1].duration > b.segments[1].duration )? 1 : -1)
     }
 
     return (

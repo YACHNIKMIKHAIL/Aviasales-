@@ -15,13 +15,13 @@ const Filter = () => {
                     backgroundColor: '#2196F3', color: 'white'
                 } : {borderRadius: '10px  0 0 10px '}}
                 onClick={() => {
-                    dispatch(setPoorTicketsAC())
+                    dispatch(setPoorTicketsAC(true))
                 }}>Самый дешевый
             </ButtonC>
             <ButtonC
                 style={filter.FASTS ? {backgroundColor: '#2196F3', color: 'white'} : {}}
                 onClick={() => {
-                    dispatch(setFastsTicketsAC())
+                    dispatch(setFastsTicketsAC(true))
                 }}>Самый быстрый
             </ButtonC>
             <ButtonC
@@ -30,7 +30,7 @@ const Filter = () => {
                     backgroundColor: '#2196F3', color: 'white'
                 } : {borderRadius: '0 10px  10px 0 '}}
                 onClick={() => {
-                    dispatch(setOptimalTicketsAC())
+                    dispatch(setOptimalTicketsAC(true))
                 }}>Оптимальный
             </ButtonC>
         </FilterCase>

@@ -81,17 +81,17 @@ export const ticketReducer = (
         }
         case 'SET_POOR': {
             return {
-                ...state, filters: {...state.filters, POOR: !state.filters.POOR}
+                ...state, filters: {...state.filters, POOR: action.value, FASTS: false, OPTIMAL: false}
             }
         }
         case 'SET_FASTS': {
             return {
-                ...state, filters: {...state.filters, FASTS: !state.filters.FASTS}
+                ...state, filters: {...state.filters, FASTS: action.value, POOR: false, OPTIMAL: false}
             }
         }
         case 'SET_OPTIMAL': {
             return {
-                ...state, filters: {...state.filters, OPTIMAL: !state.filters.OPTIMAL}
+                ...state, filters: {...state.filters, OPTIMAL: action.value, POOR: false, FASTS: false}
             }
         }
         case 'SET_MAX': {
@@ -184,18 +184,18 @@ export const setTicketsAC = (tickets: Array<ItemsType>) => ({
 } as const)
 
 export type setPoorTicketsACType = ReturnType<typeof setPoorTicketsAC>
-export const setPoorTicketsAC = () => ({
-    type: 'SET_POOR',
+export const setPoorTicketsAC = (value: boolean) => ({
+    type: 'SET_POOR', value
 } as const)
 
 export type setFastsTicketsACType = ReturnType<typeof setFastsTicketsAC>
-export const setFastsTicketsAC = () => ({
-    type: 'SET_FASTS',
+export const setFastsTicketsAC = (value: boolean) => ({
+    type: 'SET_FASTS', value
 } as const)
 
 export type setOptimalTicketsACType = ReturnType<typeof setOptimalTicketsAC>
-export const setOptimalTicketsAC = () => ({
-    type: 'SET_OPTIMAL',
+export const setOptimalTicketsAC = (value: boolean) => ({
+    type: 'SET_OPTIMAL', value
 } as const)
 
 export type setMaxCountACType = ReturnType<typeof setMaxCountAC>
