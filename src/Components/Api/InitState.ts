@@ -1,7 +1,7 @@
 import {InitTicketsType} from "../Store/TicketReducer";
 
 export const initailState: InitTicketsType = {
-    render:[],
+    render: [],
     items: [
         {
             price: 49480,
@@ -1617,6 +1617,17 @@ export const initailState: InitTicketsType = {
             }]
         },
     ],
-    fiveToRender:5,
-    filters: {POOR:false, FASTS:false, OPTIMAL:false}
+    fiveToRender: 5,
+    filters: {
+        POOR: false,
+        FASTS: false,
+        OPTIMAL: false
+    },
+    stops: {
+        all: false,
+        null: false,
+        one: false,
+        two: false,
+        three: false
+    }
 }
