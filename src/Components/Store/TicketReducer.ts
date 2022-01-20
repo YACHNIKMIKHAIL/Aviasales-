@@ -1,5 +1,3 @@
-import {pbkdf2Sync} from "crypto";
-
 export type SegmentsType = {
     // Код города (iata)
     origin: string
@@ -66,8 +64,8 @@ export const ticketReducer = (
             return {
                 ...state,
                 render: [...action.tickets],
-                items: [...state.items, ...action.tickets.slice(0, state.fiveToRender)],
-                fiveToRender: state.fiveToRender + 5
+                items: [...state.items, ...action.tickets],
+                fiveToRender: state.fiveToRender
             }
 
         }
@@ -75,7 +73,6 @@ export const ticketReducer = (
             debugger
             return {
                 ...state,
-                items: [...state.render.slice(0, state.fiveToRender)],
                 fiveToRender: state.fiveToRender + 5
             }
         }
@@ -102,25 +99,6 @@ export const ticketReducer = (
         }
         case 'SET_ALL': {
             debugger
-            if (!action.value && !state.stops.null && !state.stops.one && !state.stops.two && !state.stops.three) {
-                return {
-                    ...state, stops: {...state.stops, all: action.value, one: !state.stops.one}
-                }
-            } else if (action.value || state.stops.null || state.stops.one || state.stops.two || state.stops.three) {
-                return {
-                    ...state,
-                    stops: {
-                        ...state.stops,
-                        all: action.value,
-                        null: false,
-                        one: false,
-                        two: false,
-                        three: false
-                    }
-                }
-            } else {
-
-            }
             return {
                 ...state, stops: {...state.stops, all: action.value}
             }

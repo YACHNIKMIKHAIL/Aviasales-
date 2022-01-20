@@ -10,6 +10,9 @@ import {ReducerType} from "../Store/Store";
 const Content = () => {
     const tickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
     const stopsState = useSelector<ReducerType, StopsType>(state => state.tickets.stops)
+    const slicer=useSelector<ReducerType,number>(state=>state.tickets.fiveToRender)
+
+
     const forRender: Array<ItemsType> = [];
 
     tickets.forEach((el) => {
@@ -38,12 +41,17 @@ const Content = () => {
         }
     })
 
+    const fiveToRender=(tickedsArray:Array<ItemsType>)=>{
+        return tickedsArray.slice(0,slicer)
+    }
+    console.log(fiveToRender(forRender))
+
     return (
         <ContentCase>
             <Chekeds/>
             <MainCase>
                 <Filter/>
-                <TicketContainer tickets={forRender}/>
+                <TicketContainer tickets={fiveToRender(forRender)}/>
             </MainCase>
         </ContentCase>
     );

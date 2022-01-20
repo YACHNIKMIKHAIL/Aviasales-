@@ -14,17 +14,17 @@ export const TicketContainer = (props: TicketContainerType) => {
     const dispatch = useDispatch<Dispatch>()
 
     useEffect(() => {
-        axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=2b59e')
+        axios.get('https://front-test.beta.aviasales.ru/tickets?searchId=3zvrg')
             .then(response => {
                 console.log(response.data.tickets)
                 dispatch(setTicketsAC(response.data.tickets))
             })
-            .catch((error) => {
+            .catch(() => {
                 alert(`server error but it's no problem)`)
                 console.log(initailState.items)
                 dispatch(setTicketsAC(initailState.items))
             })
-    }, [])
+    }, [dispatch])
 
     const actualFilter=useSelector<ReducerType,FiltersType>(state=>state.tickets.filters)
 
