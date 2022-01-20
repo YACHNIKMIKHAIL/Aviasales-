@@ -79,22 +79,46 @@ const Content = () => {
 
     const tickets = useSelector<ReducerType, Array<ItemsType>>(state => state.tickets.items)
     const stopsState = useSelector<ReducerType, StopsType>(state => state.tickets.stops)
-    let forRender = tickets
-    if (stopsState.null) {
-        forRender = tickets.filter(f => f.segments[0].stops.length === 0 && f.segments[1].stops.length === 0)
-    }
-    if (stopsState.one) {
-        forRender = tickets.filter(f => f.segments[0].stops.length === 1 && f.segments[1].stops.length === 1
-        )
-    }
-    if (stopsState.two) {
-        forRender = tickets.filter(f => f.segments[0].stops.length === 2 && f.segments[1].stops.length === 2
-        )
-    }
-    if (stopsState.three) {
-        forRender = tickets.filter(f => f.segments[0].stops.length === 3 && f.segments[1].stops.length === 3
-        )
-    }
+    const forRender: Array<ItemsType> = [];
+
+    tickets.forEach((el) => {
+        if (stopsState.null) {
+            if (el.segments[0].stops.length === 0 && el.segments[1].stops.length === 0) {
+                forRender.push(el)
+            }
+        }
+        if (stopsState.one) {
+            if (el.segments[0].stops.length === 1 && el.segments[1].stops.length === 1) {
+                forRender.push(el)
+            }
+        }
+        if (stopsState.two) {
+            if (el.segments[0].stops.length === 2 && el.segments[1].stops.length === 2) {
+                forRender.push(el)
+            }
+        }
+        if (stopsState.three) {
+            if (el.segments[0].stops.length === 3 && el.segments[1].stops.length === 3) {
+                forRender.push(el)
+            }
+        }
+    })
+
+    // if (stopsState.null) {
+    //     forRender = tickets.filter(f => f.segments[0].stops.length === 0 && f.segments[1].stops.length === 0)
+    // }
+    // if (stopsState.one) {
+    //     forRender = tickets.filter(f => f.segments[0].stops.length === 1 && f.segments[1].stops.length === 1
+    //     )
+    // }
+    // if (stopsState.two) {
+    //     forRender = tickets.filter(f => f.segments[0].stops.length === 2 && f.segments[1].stops.length === 2
+    //     )
+    // }
+    // if (stopsState.three) {
+    //     forRender = tickets.filter(f => f.segments[0].stops.length === 3 && f.segments[1].stops.length === 3
+    //     )
+    // }
 
     return (
         <ContentCase>

@@ -47,7 +47,7 @@ const initState: InitTicketsType = {
         OPTIMAL: false
     },
     stops: {
-        all: false,
+        all: true,
         null: false,
         one: false,
         two: false,
