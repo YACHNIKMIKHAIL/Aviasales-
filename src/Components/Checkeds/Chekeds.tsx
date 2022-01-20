@@ -1,37 +1,45 @@
 import React from 'react';
 import styled from "styled-components";
-import {useDispatch} from "react-redux";
-import {setAllAC, setNullAC, setOneAC, setThreeAC, setTwoAC} from "../Store/TicketReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {setAllAC, setNullAC, setOneAC, setThreeAC, setTwoAC, StopsType} from "../Store/TicketReducer";
+import {ReducerType} from "../Store/Store";
 
 type ChekedsType = {}
 const Chekeds = (props: ChekedsType) => {
     const dispatch = useDispatch()
+    const stops = useSelector<ReducerType, StopsType>(state => state.tickets.stops)
     return (
         <ChekedsCase>КОЛИЧЕСВО ПЕРЕСАДОК
             <label><Span> <input onChange={(e) => {
-                dispatch(setAllAC())
-
+                dispatch(setAllAC(!stops.all))
             }
-            } type="checkbox" defaultChecked/>Все</Span></label>
+            } type="checkbox"
+                                 checked={stops.all}
+            />Все</Span></label>
             <label><Span> <input onChange={(e) => {
-                dispatch(setNullAC())
-            }
-
-            } type="checkbox"/>Без пересадок</Span></label>
-            <label><Span> <input onChange={(e) => {
-                dispatch(setOneAC())
+                dispatch(setNullAC(!stops.null))
             }
 
-            } type="checkbox"/>1 пересадка</Span></label>
+            } type="checkbox"
+                checked={stops.null}
+            />Без пересадок</Span></label>
             <label><Span> <input onChange={(e) => {
-                dispatch(setTwoAC())
+                dispatch(setOneAC(!stops.one))
             }
 
-            } type="checkbox"/>2 пересадки</Span></label>
+            } type="checkbox"
+                // defaultChecked={(!stops.all&&!stops.null&&!stops.one&&!stops.two&&!stops.three)}
+
+                                 checked={stops.one} />1 пересадка</Span></label>
             <label><Span> <input onChange={(e) => {
-                dispatch(setThreeAC())
+                dispatch(setTwoAC(!stops.two))
             }
-            } type="checkbox"/>3 пересадки</Span></label>
+
+            } type="checkbox" checked={stops.two}/>2 пересадки</Span></label>
+            <label><Span> <input onChange={(e) => {
+                dispatch(setThreeAC(!stops.three))
+            }
+            } type="checkbox" checked={stops.three}/>3 пересадки</Span></label>
         </ChekedsCase>
     );
 };

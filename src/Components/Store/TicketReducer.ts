@@ -102,32 +102,62 @@ export const ticketReducer = (
         }
         case 'SET_ALL': {
             debugger
+            if (!action.value && !state.stops.null && !state.stops.one && !state.stops.two && !state.stops.three) {
+                return {
+                    ...state, stops: {...state.stops,all:action.value ,one: !state.stops.one}
+                }
+            } else if (action.value && state.stops.null && state.stops.one && state.stops.two && state.stops.three) {
+                return {
+                    ...state,
+                    stops: {
+                        ...state.stops,
+                        all: action.value,
+                        null: !state.stops.null,
+                        one: !state.stops.one,
+                        two: !state.stops.two,
+                        three: !state.stops.three
+                    }
+                }
+            } else {
+
+            }
             return {
-                ...state, stops:{...state.stops,all:!state.stops.all}
+                ...state, stops: {...state.stops, all: action.value}
             }
         }
         case 'SET_NULL': {
             debugger
             return {
-                ...state, stops: {...state.stops,null:!state.stops.null}
+                ...state, stops: {
+                    ...state.stops, null: action.value,
+                    all: false
+                }
             }
         }
         case 'SET_ONE': {
-            debugger
             return {
-                ...state, stops: {...state.stops,one:!state.stops.one}
+                ...state, stops: {
+                    ...state.stops, one: action.value,
+                    all: false
+                }
             }
         }
         case 'SET_TWO': {
             debugger
             return {
-                ...state, stops: {...state.stops,two:!state.stops.two}
+                ...state, stops: {
+                    ...state.stops, two: action.value,
+                    all: false
+                }
             }
         }
         case 'SET_THREE': {
             debugger
             return {
-                ...state, stops: {...state.stops,three:!state.stops.three}
+                ...state, stops: {
+                    ...state.stops, three: action.value,
+                    all: false
+                }
             }
         }
         default:
@@ -179,22 +209,22 @@ export const showFiveAC = () => ({
 } as const)
 
 export type setAllACType = ReturnType<typeof setAllAC>
-export const setAllAC = () => ({
-    type: 'SET_ALL'
+export const setAllAC = (value: boolean) => ({
+    type: 'SET_ALL', value
 } as const)
 export type setNullACType = ReturnType<typeof setNullAC>
-export const setNullAC = () => ({
-    type: 'SET_NULL'
+export const setNullAC = (value: boolean) => ({
+    type: 'SET_NULL', value
 } as const)
 export type setOneACType = ReturnType<typeof setOneAC>
-export const setOneAC = () => ({
-    type: 'SET_ONE'
+export const setOneAC = (value: boolean) => ({
+    type: 'SET_ONE', value
 } as const)
 export type setTwoACType = ReturnType<typeof setTwoAC>
-export const setTwoAC = () => ({
-    type: 'SET_TWO'
+export const setTwoAC = (value: boolean) => ({
+    type: 'SET_TWO', value
 } as const)
 export type setThreeACType = ReturnType<typeof setThreeAC>
-export const setThreeAC = () => ({
-    type: 'SET_THREE'
+export const setThreeAC = (value: boolean) => ({
+    type: 'SET_THREE', value
 } as const)

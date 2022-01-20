@@ -14,9 +14,7 @@ const Content = () => {
 
     tickets.forEach((el) => {
         if (stopsState.all) {
-            // if (el.segments[0].stops.length === 0 && el.segments[1].stops.length === 0) {
                 forRender.push(el)
-            // }
         }
         if (stopsState.null) {
             if (el.segments[0].stops.length === 0 && el.segments[1].stops.length === 0) {
